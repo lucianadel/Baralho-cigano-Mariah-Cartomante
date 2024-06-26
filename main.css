@@ -1,0 +1,34 @@
+body {
+    font-family: roboto, sans-serif;
+}
+
+.navbar {
+    background-color: #8B0000;
+}
+
+.nav .nav-link.active {
+    background-color: #fff;
+    color: #8B0000;
+}
+
+.nav .nav-link,
+.navbar-brand,
+.navbar-brand:hover {
+    color: #fff;
+}
+
+/* .navbar-brand {
+    font-family: pacifico, cursive;
+} */
+
+.navbar-toggler {
+    background-color: #fff;
+}
+
+.section-title {
+    font-family: pacifico, cursive;
+}
+
+#Sobre-Mariah-Cartomante {
+    background-color:	#FFDAB9;
+}
