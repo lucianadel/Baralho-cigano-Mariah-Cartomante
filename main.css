@@ -6,6 +6,7 @@ body {
     background-color: #8B0000;
 }
 
+
 .nav .nav-link.active {
     background-color: #fff;
     color: #8B0000;
@@ -29,6 +30,26 @@ body {
     font-family: pacifico, cursive;
 }
 
-#Sobre-Mariah-Cartomante {
-    background-color:	#FFDAB9;
+#sobre {
+    background-color: #FFDAB9;
 }
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.list-group-item img {
+    border-radius: 5px;
+
+    b .btn-outline-primary img {
+        width: 20px;
+        height: auto;
+        margin-top: -2px;
+    }
+}
+
+.text-colored {
+    color: #8B0000;
+}
+
