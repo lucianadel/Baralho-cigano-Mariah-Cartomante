@@ -2,19 +2,30 @@ body {
     font-family: roboto, sans-serif;
 }
 
-.navbar {
+.navbar,
+.btn-color-red {
     background-color: #8B0000;
 }
 
+.btn-color-red {
+    color: #fff;
+}
 
-.nav .nav-link.active {
+.btn-color-red:hover {
+    background-color: #FFDAB9;
+    color: #000;
+}
+
+
+#cabecalho .nav .nav-link.active {
     background-color: #fff;
     color: #8B0000;
 }
 
-.nav .nav-link,
+#cabecalho .nav .nav-link,
 .navbar-brand,
-.navbar-brand:hover {
+.navbar-brand:hover,
+.nav-servico .nav-link.active:hover {
     color: #fff;
 }
 
@@ -30,26 +41,32 @@ body {
     font-family: pacifico, cursive;
 }
 
-#sobre {
+#sobre,
+#fale-conosco {
     background-color: #FFDAB9;
-}
-
-.img-fluid {
-    max-width: 100%;
-    height: auto;
-}
-
-.list-group-item img {
-    border-radius: 5px;
-
-    b .btn-outline-primary img {
-        width: 20px;
-        height: auto;
-        margin-top: -2px;
-    }
 }
 
 .text-colored {
     color: #8B0000;
 }
 
+.nav-servico .nav-link.nav-link.active {
+    background-color: #8B0000;
+    color: #fff;
+
+}
+
+.nav-servico .nav-link.nav-link {
+    color: #8B0000;
+
+}
+
+#servicos .section-title {
+    position: relative;
+    right:30px;
+    /* Ajuste o valor de 'right' */
+    transform: translateY(-20px);
+    
+    
+
+}
