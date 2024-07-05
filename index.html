@@ -17,7 +17,7 @@
 
 <body>
     <!-- para poder acompanhar a pagina durante a rolagem -->
-    <header class="navbar navbar-expand-lg sticky-top p-4"id="cabecalho">
+    <header class="navbar navbar-expand-lg sticky-top p-4" id="cabecalho">
         <div class="container">
             <h1 class="navbar-brand m-0 section-title"> Mariah Cartomante </h1>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu-navegacao">
@@ -28,7 +28,7 @@
             <nav class="navbar-collapse collapse justify-content-end" id="menu-navegacao">
                 <ul class="nav nav-pills d-block d-md-flex">
                     <li class="nav-item fw-bold">
-                        <a href="#sobre"class="nav-link">
+                        <a href="#sobre" class="nav-link">
 
                             <i class="bi bi-house-door me-1"></i>
                             Sobre Mariah Cartomante
@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li class="nav-item fw-bold">
-                        <a href="#depoimentos" class="nav-link"></i>
+                        <a href="#depoimentos" class="nav-link">
                             <i class="bi bi-file-person-fill me-1"></i>
                             Depoimentos
                         </a>
@@ -61,7 +61,7 @@
     </header>
     <div data-bs-spy="scroll" data-bs-target="cabecalho">
         <section id="sobre">
-            <div class="carousel slide" data-bs-ride="carousel" id="carousel">
+            <div class="carousel slide d-none d-lg-block" data-bs-ride="carousel" id="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="3000">
                         <img src="./imagens/jogando-cartas.png" alt="foto jogando cartas baralho">
@@ -146,282 +146,301 @@
 
                 </div>
             </div>
-    </section>
+        </section>
 
-    <section id="servicos" class="pt-5 pb-5">
-        <div class="container container">
-            <div class="row">
-                <h2 class="section-title text-center text-colored"> Nossos Serviços</h2>
+        <section id="servicos" class="pt-5 pb-5">
+            <div class="container container">
+                <div class="row">
+                    <h2 class="section-title text-center text-colored"> Nossos Serviços</h2>
 
-            </div>
-            <div class="row">
-                <aside class="col-md-2">
-                    <nav class="nav nav-pills flex-column nav-servico">
-                        <button type="button" data-bs-toggle="tab" data-bs-target="#baralhos"
-                            class="fw-bold text-start nav-link active text-colored">Baralhos</button>
+                </div>
+                <div class="row">
+                    <aside class="col-md-2">
+                        <nav class="nav nav-pills flex-column nav-servico">
+                            <button type="button" data-bs-toggle="tab" data-bs-target="#baralhos"
+                                class="fw-bold text-start nav-link active text-colored">Baralhos</button>
 
-                        <button type="button" data-bs-toggle="tab" data-bs-target="#rituais"
-                            class="fw-bold text-start nav-link text-colored">Rituais</button>
-                        <button type="button" data-bs-toggle="tab" data-bs-target="#mesas-radionicas"
-                            class="fw-bold text-start nav-link text-colored">Mesas Radionicas</button>
-                    </nav>
-                </aside>
-                <div class="col-md-10">
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="baralhos">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <img class="d-block w-100" src="./imagens/Baralho-cigano.png" alt="foto baralho">
-                                    <h5 class="text-colored fw-bold mt-2"> Baralho Cigano</h5>
-                                    <p>O baralho cigano é um espelho da alma, revelando seus pensamentos, sentimentos e
-                                        desejos mais profundos. Com ele, você terá a oportunidade de se conhecer melhor
-                                        e entender o que o universo te reserva. Você tem o poder de escolher o seu
-                                        caminho.</p>
-                                    <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2AConsulta%20com%20o%20baralho%20Cigano%2A"
-                                        class="btn btn-color-red" target="_blank">
-                                        <i class="bi bi-whatsapp"> Quero este</i>
-                                    </a>
+                            <button type="button" data-bs-toggle="tab" data-bs-target="#rituais"
+                                class="fw-bold text-start nav-link text-colored">Rituais</button>
+                            <button type="button" data-bs-toggle="tab" data-bs-target="#mesas-radionicas"
+                                class="fw-bold text-start nav-link text-colored">Mesas Radionicas</button>
+                        </nav>
+                    </aside>
+                    <div class="col-md-10">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="baralhos">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img class="d-block w-100" src="./imagens/Baralho-cigano.png"
+                                            alt="foto baralho">
+                                        <h5 class="text-colored fw-bold mt-2"> Baralho Cigano</h5>
+                                        <p>O baralho cigano é um espelho da alma, revelando seus pensamentos,
+                                            sentimentos e
+                                            desejos mais profundos. Com ele, você terá a oportunidade de se conhecer
+                                            melhor
+                                            e entender o que o universo te reserva. Você tem o poder de escolher o seu
+                                            caminho.</p>
+                                        <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2AConsulta%20com%20o%20baralho%20Cigano%2A"
+                                            class="btn btn-color-red" target="_blank">
+                                            <i class="bi bi-whatsapp"> Quero este</i>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <img class="d-block w-100" src="./imagens/carta-ze.png" alt="foto-ritual2">
+                                        <h5 class="text-colored fw-bold mt-2">Baralho do Zé</h5>
+                                        <p>O Zé Pilintra, com sua malandragem e bom humor, nos ensina a aproveitar a
+                                            vida
+                                            com leveza e sabedoria. Através das cartas do seu baralho, ele nos oferece
+                                            mensagens inspiradoras para lidar com os desafios do dia a dia e alcançar a
+                                            felicidade.</p>
+                                        <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2AConsulta%20com%20o%20Baralho%20do%20Z%C3%A9%2A"
+                                            class="btn btn-color-red" target="_blank">
+                                            <i class="bi bi-whatsapp"> Quero este</i>
+                                        </a>
+
+
+
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <img class="d-block w-100" src="./imagens/baralho-maria-padilha.png"
+                                            alt="foto baralho maria padilha">
+                                        <h5 class="text-colored fw-bold mt-2"> Baralho Maria Padilha</h5>
+                                        <p>Libere-se de crenças limitantes e abra espaço para um amor autêntico e
+                                            empoderado. A Mariah Cartomante está aqui para te auxiliar nesse processo de
+                                            transformação e autoconhecimento, que mudará sua vida.</p>
+                                        <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2AConsulta%20com%20o%20baralho%20Maria%20Padilha%2A"
+                                            class="btn btn-color-red" target="_blank">
+                                            <i class="bi bi-whatsapp"> Quero este</i>
+                                        </a>
+
+
+
+                                    </div>
                                 </div>
+                            </div>
 
-                                <div class="col-md-3">
-                                    <img class="d-block w-100" src="./imagens/carta-ze.png" alt="foto-ritual2">
-                                    <h5 class="text-colored fw-bold mt-2">Baralho do Zé</h5>
-                                    <p>O Zé Pilintra, com sua malandragem e bom humor, nos ensina a aproveitar a vida
-                                        com leveza e sabedoria. Através das cartas do seu baralho, ele nos oferece
-                                        mensagens inspiradoras para lidar com os desafios do dia a dia e alcançar a
-                                        felicidade.</p>
-                                    <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2AConsulta%20com%20o%20Baralho%20do%20Z%C3%A9%2A"
-                                        class="btn btn-color-red" target="_blank">
-                                        <i class="bi bi-whatsapp"> Quero este</i>
-                                    </a>
+                            <div class="tab-pane" id="rituais">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img class="d-block w-100" src="./imagens/foto-ritual1.png" alt="foto ritual1">
+                                        <h5 class="text-colored fw-bold mt-2">
+                                            Adoçamento de casais
+
+                                        </h5>
+                                        <p>O que esperar do Adoçamento de Casais na força dos Ciganos?
+
+                                            O adoçamento de casais com Mariah não é uma promessa mágica instantânea, mas
+                                            sim
+                                            um processo de transformação energética.O adoçamento de casais fortalece os
+                                            laços de amor e união entre o casal. </p>
 
 
+                                        <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2ARitual%20de%20Ado%C3%A7amento%20de%20casais%2A"
+                                            class="btn btn-color-red" target="_blank">
+                                            <i class="bi bi-whatsapp"> Quero este </i>
+                                        </a>
 
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <img class="d-block w-100" src="./imagens/ritual2.jpg" alt="foto-ritual2">
+                                        <h5 class="text-colored fw-bold mt-2"> Prosperidade Financeira
+
+                                        </h5>
+                                        <p>A prosperidade vai além de bens materiais. Ela é um estado de abundância que
+                                            se
+                                            manifesta em todos os aspectos da vida: amor, saúde, paz interior e
+                                            realização
+                                            pessoal. Se você acredita que pode ser próspero, você já está no caminho
+                                            certo."
+                                            - Mariah Cartomante</p>
+                                        <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2ARitual%20de%20prosperidade%20Financeira%2A"
+                                            class="btn btn-color-red" target="_blank">
+                                            <i class="bi bi-whatsapp"> Quero este</i>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <img class="d-block w-100" src="./imagens/ritual-morango.png"
+                                            alt="foto ritual3">
+                                        <h5 class="text-colored fw-bold mt-2">Padê Pombagira</h5>
+                                        <p>Ritual para Alcançar Seus Desejos com Pomba Gira: Conecte-se à Força e Magia
+                                            Neste ritual, você terá a oportunidade de se conectar com a poderosa energia
+                                            da
+                                            Pomba Gira e pedir a realização de seus desejos mais profundos.Que a Pomba
+                                            Gira
+                                            te abençoe e te guie na realização dos seus sonhos!</p>
+
+                                        <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2ARitual%20Pad%C3%AA%20Pombagira%2A"
+                                            class="btn btn-color-red" target="_blank">
+                                            <i class="bi bi-whatsapp"> Quero este</i>
+                                        </a>
+                                    </div>
                                 </div>
+                            </div>
 
-                                <div class="col-md-3">
-                                    <img class="d-block w-100" src="./imagens/baralho-maria-padilha.png"
-                                        alt="foto baralho maria padilha">
-                                    <h5 class="text-colored fw-bold mt-2"> Baralho Maria Padilha</h5>
-                                    <p>Libere-se de crenças limitantes e abra espaço para um amor autêntico e
-                                        empoderado. A Mariah Cartomante está aqui para te auxiliar nesse processo de
-                                        transformação e autoconhecimento, que mudará sua vida.</p>
-                                    <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2AConsulta%20com%20o%20baralho%20Maria%20Padilha%2A"
-                                        class="btn btn-color-red" target="_blank">
-                                        <i class="bi bi-whatsapp"> Quero este</i>
-                                    </a>
+                            <div class="tab-pane" id="mesas-radionicas">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img class="d-block w-100" src="./imagens/Mesa-radionica.png"
+                                            alt="mesa radionica chama da violeta">
+                                        <h5 class="text-colored fw-bold mt-2"> Mesa Radionica Chama da Violeta </h5>
+                                        <p>A Mesa Radiônica Chama da Violeta é uma ferramenta poderosa que pode te
+                                            auxiliar
+                                            na busca pela cura, pela transformação e pela elevação espiritual.
+                                            A Mariah Cartomante e sua equipe estão aqui para te guiar e te apoiar nessa
+                                            jornada de autoconhecimento.</p>
+
+                                        <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2AMesa%20Radionica%20Chama%20da%20Violeta%2A%2A."
+                                            class="btn btn-color-red" target="_blank">
+                                            <i class="bi bi-whatsapp"> Quero este</i>
+                                        </a>
+                                    </div>
 
 
+                                    <div class="col-md-3">
+                                        <img class="d-block w-100" src="./imagens/mesa-radionica-ze-02.png"
+                                            alt="mesa do ze">
+                                        <h5 class="text-colored fw-bold mt-2"> Mesa Radionica do Zé</h5>
+                                        <p>Esteja aberto para receber as mensagens que a Mesa Radiônica Zé Pelintra tem
+                                            para
+                                            você. Confie no poder da cura, da transformação, da sabedoria ancestral e da
+                                            vibração da prosperidade. Acredite no seu potencial infinito e na força que
+                                            reside dentro de você.</p>
+                                        <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2AMesa%20Radionica%20Z%C3%A9%20Pelintra%2A"
+                                            class="btn btn-color-red" target="_blank">
+                                            <i class="bi bi-whatsapp"> Quero este</i>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <img class="d-block w-100" src="./imagens/mesa-ganesha.png" alt="mesa Ganesha">
+
+                                        <h5 class="text-colored fw-bold mt-2"> Mesa Radionica Ganesha</h5>
+                                        <p>Na jornada da vida, onde desafios e oportunidades se entrelaçam, a Mesa
+                                            Radiônica
+                                            Ganesha surge como um farol de orientação e um portal de conexão com a
+                                            sabedoria
+                                            divina e a energia abençoada de Ganesha, o deus hindu da prosperidade e da
+                                            remoção de obstáculos.</p>
+                                        <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2AMesa%20Radionica%20Ganesha%2A"
+                                            class="btn btn-color-red" target="_blank">
+                                            <i class="bi bi-whatsapp"> Quero este</i>
+                                        </a>
+                                    </div>
 
                                 </div>
                             </div>
+
                         </div>
 
-                        <div class="tab-pane" id="rituais">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <img class="d-block w-100" src="./imagens/foto-ritual1.png" alt="foto ritual1">
-                                    <h5 class="text-colored fw-bold mt-2">
-                                        Adoçamento de casais
+                    </div>
+        </section>
 
-                                    </h5>
-                                    <p>O que esperar do Adoçamento de Casais na força dos Ciganos?
-
-                                        O adoçamento de casais com Mariah não é uma promessa mágica instantânea, mas sim
-                                        um processo de transformação energética.O adoçamento de casais fortalece os
-                                        laços de amor e união entre o casal. </p>
-
-
-                                    <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2ARitual%20de%20Ado%C3%A7amento%20de%20casais%2A"
-                                        class="btn btn-color-red" target="_blank">
-                                        <i class="bi bi-whatsapp"> Quero este </i>
-                                    </a>
-
-                                </div>
-
-                                <div class="col-md-3">
-                                    <img class="d-block w-100" src="./imagens/ritual2.jpg" alt="foto-ritual2">
-                                    <h5 class="text-colored fw-bold mt-2"> Prosperidade Financeira
-
-                                    </h5>
-                                    <p>A prosperidade vai além de bens materiais. Ela é um estado de abundância que se
-                                        manifesta em todos os aspectos da vida: amor, saúde, paz interior e realização
-                                        pessoal. Se você acredita que pode ser próspero, você já está no caminho certo."
-                                        - Mariah Cartomante</p>
-                                    <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2ARitual%20de%20prosperidade%20Financeira%2A"
-                                        class="btn btn-color-red" target="_blank">
-                                        <i class="bi bi-whatsapp"> Quero este</i>
-                                    </a>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <img class="d-block w-100" src="./imagens/ritual-morango.png" alt="foto ritual3">
-                                    <h5 class="text-colored fw-bold mt-2">Padê Pombagira</h5>
-                                    <p>Ritual para Alcançar Seus Desejos com Pomba Gira: Conecte-se à Força e Magia
-                                        Neste ritual, você terá a oportunidade de se conectar com a poderosa energia da
-                                        Pomba Gira e pedir a realização de seus desejos mais profundos.Que a Pomba Gira
-                                        te abençoe e te guie na realização dos seus sonhos!</p>
-
-                                    <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2ARitual%20Pad%C3%AA%20Pombagira%2A"
-                                        class="btn btn-color-red" target="_blank">
-                                        <i class="bi bi-whatsapp"> Quero este</i>
-                                    </a>
-                                </div>
+        <section id="depoimentos" class="pt-5 pb-5">
+            <div class="container">
+                <h2 class="section-title text-center text-colored py-3 px-4">Depoimentos dos Clientes</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <img src="./imagens/foto-Carmem.jpg" class="card-img-top img-fluid"
+                                alt="Foto da Carmem Silva">
+                            <div class="card-body">
+                                <h5 class="card-title text-colored">
+                                    Sou a Carmem Silva
+                                    <i class="bi bi-chat-left-heart"></i>
+                                </h5>A consulta online com o baralho cigano foi uma experiência muito positiva e
+                                recomendo a
+                                Mariah Cartomante
+                                para quem busca um atendimento profissional, atencioso e preciso.
+                                <p class="card-text text-colored">
+                                </p>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <img src="./imagens/foto-d-Maria José.jpg" class="card-img-top img-fluid "
+                                alt="Foto da Maria José">
+                            <div class="card-body">
+                                <h5 class="card-title text-colored">
+                                    Sou a Maria José
+                                    <i class="bi bi-balloon-heart-fill"></i>
+                                </h5>
 
-                        <div class="tab-pane" id="mesas-radionicas">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <img class="d-block w-100" src="./imagens/Mesa-radionica.png"
-                                        alt="mesa radionica chama da violeta">
-                                    <h5 class="text-colored fw-bold mt-2"> Mesa Radionica Chama da Violeta </h5>
-                                    <p>A Mesa Radiônica Chama da Violeta é uma ferramenta poderosa que pode te auxiliar
-                                        na busca pela cura, pela transformação e pela elevação espiritual.
-                                        A Mariah Cartomante e sua equipe estão aqui para te guiar e te apoiar nessa
-                                        jornada de autoconhecimento.</p>
-
-                                    <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2AMesa%20Radionica%20Chama%20da%20Violeta%2A%2A."
-                                        class="btn btn-color-red" target="_blank">
-                                        <i class="bi bi-whatsapp"> Quero este</i>
-                                    </a>
-                                </div>
-
-
-                                <div class="col-md-3">
-                                    <img class="d-block w-100" src="./imagens/mesa-radionica-ze-02.png"
-                                        alt="mesa do ze">
-                                    <h5 class="text-colored fw-bold mt-2"> Mesa Radionica do Zé</h5>
-                                    <p>Esteja aberto para receber as mensagens que a Mesa Radiônica Zé Pelintra tem para
-                                        você. Confie no poder da cura, da transformação, da sabedoria ancestral e da
-                                        vibração da prosperidade. Acredite no seu potencial infinito e na força que
-                                        reside dentro de você.</p>
-                                    <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2AMesa%20Radionica%20Z%C3%A9%20Pelintra%2A"
-                                        class="btn btn-color-red" target="_blank">
-                                        <i class="bi bi-whatsapp"> Quero este</i>
-                                    </a>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <img class="d-block w-100" src="./imagens/mesa-ganesha.png" alt="mesa Ganesha">
-
-                                    <h5 class="text-colored fw-bold mt-2"> Mesa Radionica Ganesha</h5>
-                                    <p>Na jornada da vida, onde desafios e oportunidades se entrelaçam, a Mesa Radiônica
-                                        Ganesha surge como um farol de orientação e um portal de conexão com a sabedoria
-                                        divina e a energia abençoada de Ganesha, o deus hindu da prosperidade e da
-                                        remoção de obstáculos.</p>
-                                    <a href="https://api.whatsapp.com/send?phone=5521972593292&text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20%2AMesa%20Radionica%20Ganesha%2A"
-                                        class="btn btn-color-red" target="_blank">
-                                        <i class="bi bi-whatsapp"> Quero este</i>
-                                    </a>
-                                </div>
-
+                                <p class="card-text ">A experiência é profunda e transformadora, e a equipe oferece um
+                                    atendimento profissional, acolhedor e personalizado.
+                                </p>
                             </div>
                         </div>
-
                     </div>
-
-                </div>
-    </section>
-
-    <section id="depoimentos" class="pt-5 pb-5">
-        <div class="container">
-            <h2 class="section-title text-center text-colored py-3 px-4">Depoimentos dos Clientes</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card mb-3">
-                        <img src="./imagens/foto-Carmem.jpg" class="card-img-top img-fluid" alt="Foto da Carmem Silva">
-                        <div class="card-body">
-                            <h5 class="card-title text-colored">
-                                Sou a Carmem Silva
-                                <i class="bi bi-chat-left-heart"></i>
-                            </h5>A consulta online com o baralho cigano foi uma experiência muito positiva e recomendo a
-                            Mariah Cartomante
-                            para quem busca um atendimento profissional, atencioso e preciso.
-                            <p class="card-text text-colored">
-                            </p>
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <img src="./imagens/foto-Helena.jpg" class="card-img-top img-fluid "
+                                alt="Foto da Maria Oliveira">
+                            <div class="card-body">
+                                <h5 class="card-title text-colored">
+                                    Sou a Helena Battista
+                                    <i class="bi bi-emoji-kiss-fill"></i>
+                                </h5>
+                                <p class="card-text"> Recomendo com entusiasmo a Mesa Radiônica da equipe da Mariah para
+                                    todos que buscam um caminho de cura, crescimento pessoal e autoconhecimento.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-3">
-                        <img src="./imagens/foto-d-Maria José.jpg" class="card-img-top img-fluid "
-                            alt="Foto da Maria José">
-                        <div class="card-body">
-                            <h5 class="card-title text-colored">
-                                Sou a Maria José
-                                <i class="bi bi-balloon-heart-fill"></i>
-                            </h5>
+        </section>
 
-                            <p class="card-text ">A experiência é profunda e transformadora, e a equipe oferece um
-                                atendimento profissional, acolhedor e personalizado.
-                            </p>
-                        </div>
-                    </div>
+        <section id="fale-conosco" class="pt-5 pb-5">
+            <div class="container">
+                <div class="row">
+                    <h2 class="section-title text-colored fw-bold mt-2">Fale conosco</h2>
+                    <p>Siga minhas redes sociais para saber mais e entrar em contato!</p>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-3">
-                        <img src="./imagens/foto-Helena.jpg" class="card-img-top img-fluid "
-                            alt="Foto da Maria Oliveira">
-                        <div class="card-body">
-                            <h5 class="card-title text-colored">
-                                Sou a Helena Battista
-                                <i class="bi bi-emoji-kiss-fill"></i>
-                            </h5>
-                            <p class="card-text"> Recomendo com entusiasmo a Mesa Radiônica da equipe da Mariah para
-                                todos que buscam um caminho de cura, crescimento pessoal e autoconhecimento.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-    </section>
-
-    <section id="fale-conosco" class="pt-5 pb-5">
-        <div class="container container">
-            <div class="row">
-                <h2 class=" section-title text-colored fw-bold mt-2">Fale conosco</h2>
-                <p>Siga-me nas minhas redes sociais para saber mais e entrar em contato!</p>
 
                 <div class="row mt-4">
-                    <div class="col-md-4">
-                        <a href="https://www.facebook.com/share/cVr6w8qcscgrVrW2/?mibextid=xfxF2i" target="_blank" class="btn btn-color-facebook text-colored fw-bold mt-2">
-                            <i class="bi bi-facebook"></i>
-                            Facebook
-                        </a>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="https://www.instagram.com/cartomantemariah_" target="_blank" class="btn btn-color-instagram text-colored fw-bold mt-2">
-                            <i class="bi bi-instagram"></i>
-                            Instagram
-                        </a>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="https://api.whatsapp.com/send?phone=5521972593292&text=%2AOl%C3%A1%2C%20vim%20pelo%20site%2A" target="_blank" class="btn btn-color-whatsapp text-colored fw-bold mt-2">
-                            <i class="bi bi-whatsapp"></i>
-                            Whatsapp
-                            
-                        </a>
+                    <div class="col-md-12">
+                        <ul class="list-unstyled d-flex justify-content-center">
+                            <li class="me-3"> <a href="https://www.facebook.com/share/cVr6w8qcscgrVrW2/?mibextid=xfxF2i"
+                                    target="_blank" class="btn btn-color-facebook text-colored fw-bold mt-2">
+                                    <i class="bi bi-facebook"></i>
+                                    Facebook
+                                </a>
+                            </li>
+                            <li class="me-3"> <a href="https://www.instagram.com/cartomantemariah_" target="_blank"
+                                    class="btn btn-color-instagram text-colored fw-bold mt-2">
+                                    <i class="bi bi-instagram"></i>
+                                    Instagram
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://api.whatsapp.com/send?phone=5521972593292&text=%2AOl%C3%A1%2C%20vim%20pelo%20site%2A"
+                                    target="_blank" class="btn btn-color-whatsapp text-colored fw-bold mt-2">
+                                    <i class="bi bi-whatsapp"></i>
+                                    Whatsapp
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        </a>
+    </div>
+    </div>
+    </div>
+    </div>
     </section>
-
-
-
-
-    </div>
-
-
     </div>
     </div>
-
+    </div>
     </section>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-
 </body>
 
 </html>
