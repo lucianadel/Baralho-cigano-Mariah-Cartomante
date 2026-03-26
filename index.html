@@ -1,491 +1,93 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mariah Cartomante</title>
     <link rel="shortcut icon" type="imagex/png" href="./imagens/logo.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <!-- para poder acompanhar a pagina durante a rolagem -->
     <header class="navbar navbar-expand-lg sticky-top p-4" id="cabecalho">
         <div class="container">
-            <h1 class="navbar-brand m-0 section-title"> Mariah Cartomante </h1>
-            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu-navegacao">
+            <h1 class="navbar-brand m-0 section-title">Mariah Cartomante</h1>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-navegacao">
                 <span class="navbar-toggler-icon"></span>
-
-
             </button>
             <nav class="navbar-collapse collapse justify-content-end" id="menu-navegacao">
-                <ul class="nav nav-pills d-block d-md-flex">
-                    <li class="nav-item fw-bold">
-                        <a href="#sobre" class="nav-link">
-
-                            <i class="bi bi-house-door me-1"></i>
-                            Sobre Mariah Cartomante
-                        </a>
-
-                    </li>
-                    <li class="nav-item fw-bold">
-                        <a href="#servicos" class="nav-link">
-                            <i class="bi bi-card-text me-1"></i>
-                            Serviços
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a href="#sobre" class="nav-link">Sobre</a></li>
+                    <li class="nav-item"><a href="#servicos" class="nav-link">Serviços</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="#" data-bs-toggle="modal" data-bs-target="#modalCarrinho">
+                            <i class="bi bi-cart3"></i> Carrinho <span id="contador-carrinho">(0)</span>
                         </a>
                     </li>
-                    <li class="nav-item fw-bold">
-                        <a href="#depoimentos" class="nav-link">
-                            <i class="bi bi-file-person-fill me-1"></i>
-                            Depoimentos
-                        </a>
-
-                    </li>
-                    <li class="nav-item fw-bold">
-                        <a href="#fale-conosco" class="nav-link">
-                            <i class="bi bi-chat-left-text  me-1"></i>
-                            Fale conosco
-                        </a>
-                    </li>
-
-                    <li class="nav-item fw-bold">
-  <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalCarrinho">
-    <i class="bi bi-cart3 me-1"></i>
-    Carrinho <span id="contador-carrinho">(0)</span>
-  </a>
-</li>
-
-
                 </ul>
             </nav>
         </div>
-
     </header>
-    <div data-bs-spy="scroll" data-bs-target="cabecalho">
-        <section id="sobre">
-            <div class="carousel slide d-none d-lg-block" data-bs-ride="carousel" id="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active" data-bs-interval="3000">
-                        <img src="./imagens/jogando-cartas.png" alt="foto jogando cartas baralho">
+
+    <main data-bs-spy="scroll" data-bs-target="#cabecalho">
+        <section id="sobre" class="pt-5 pb-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-5">
+                        <img src="./imagens/foto-perfil-Marcia.jpg" class="d-block w-100 rounded shadow" alt="Mariah">
                     </div>
-                    <div class="carousel-item" data-bs-interval="3000">
-                        <img src="./imagens/beneficio-baralho-cigano.png" alt="foto cartas baralho1">
-
+                    <div class="col-md-7">
+                        <h2 class="section-title text-colored">Sobre Mariah Cartomante</h2>
+                        <p>Clareza e orientação através do Baralho Cigano e Terapias Radiónicas.</p>
                     </div>
-                    <div class="carousel-item" data-bs-interval="3000">
-                        <img src="./imagens/cartas-02.png" alt="baralho cigano2">
-                    </div>
-                    <div class="carousel-item" data-bs-interval="3000">
-                        <img src="./imagens/slide-mesa-ze.png" alt="mesa radionica do zé">
-                    </div>
-                    <div class="carousel-item" data-bs-interval="3000">
-                        <img src="./imagens/radiestesia01.png" alt="foto pendulo-radiestesia">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </button>
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carousel" class="active" data-bs-slide-to="0"></button>
-                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="1"></button>
-                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="2"></button>
-                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="3"></button>
-                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="4"></button>
-                </div>
-            </div>
-            <div class="pt-5 pb-5">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <img src="./imagens/foto-perfil-Marcia.jpg" class="d-block w-100 rounded" alt="ritual1">
-                        </div>
-                        <div class="col-md-7">
-                            <h2 class="section-title text-colored">Sobre Mariah Cartomante</h2>
-                            <p>
-                                Um Refúgio para Quem Busca Paz e Clareza:
-
-                                Se você está buscando clareza, paz interior e direcionamento para sua vida, Mariah é a
-                                cartomante que você precisa. Com sua sabedoria ancestral e profunda conexão com o
-                                universo,
-                                ela te ajudará a navegar pelos desafios da vida com mais confiança e serenidade.
-                                Permita-se
-                                ser guiado por sua luz e embarque em uma jornada de autoconhecimento e transformação que
-                                te
-                                levará a um futuro mais luminoso e promissor.Em uma consulta com Mariah, você não
-                                encontrará
-                                apenas previsões sobre o futuro, mas sim um convite para um mergulho profundo em seu Eu
-                                interior.
-                            </p>
-
-                            <h3 class="section-title text-colored">Sobre o espaço</h3>
-
-                            <p>Espaço Online da Mariah Cartomante: Um Portal Místico para o Autoconhecimento
-                                Embora o mundo digital se apresente como um reino de conexões instantâneas e informações
-                                superficiais, Mariah Cartomante te convida a um refúgio virtual onde a magia ancestral
-                                se
-                                entrelaça com a praticidade da era moderna. Seu Espaço Online transcende os limites
-                                físicos,
-                                criando um portal místico para o autoconhecimento e a transformação, acessível a
-                                qualquer
-                                pessoa, em qualquer lugar do mundo.</p>
-
-                            <p>Mais do que um simples ambiente virtual, o Espaço Online da Mariah Cartomante é um portal
-                                para a transformação e o crescimento pessoal. Através das consultas, rituais e da
-                                conexão
-                                com Mariah, você terá a oportunidade de:</p>
-                            <ul>
-                                <li>Identificar seus bloqueios e padrões negativos</li>
-                                <li>Tomar decisões conscientes e alinhadas com seus objetivos</li>
-                                <li>Atrair prosperidade, amor e sucesso para sua vida</li>
-                                <li>Alcançar a paz interior e a realização pessoal.</li>
-                            </ul>
-                        </div>
-
-                    </div>
-
                 </div>
             </div>
         </section>
 
-        <section id="servicos" class="pt-5 pb-5">
-            <div class="container container">
+        <section id="servicos" class="pt-5 pb-5 bg-light">
+            <div class="container">
+                <h2 class="section-title text-center text-colored mb-5">Nossos Serviços</h2>
                 <div class="row">
-                    <h2 class="section-title text-center text-colored"> Nossos Serviços</h2>
-
-                </div>
-                <div class="row">
-                    <aside class="col-md-2">
+                    <aside class="col-md-3">
                         <nav class="nav nav-pills flex-column nav-servico">
-                            <button type="button" data-bs-toggle="tab" data-bs-target="#baralhos"
-                                class="fw-bold text-start nav-link active text-colored">Baralhos</button>
-
-                            <button type="button" data-bs-toggle="tab" data-bs-target="#rituais"
-                                class="fw-bold text-start nav-link text-colored">Rituais</button>
-                            <button type="button" data-bs-toggle="tab" data-bs-target="#mesas-radionicas"
-                                class="fw-bold text-start nav-link text-colored">Mesas Radionicas</button>
+                            <button data-bs-toggle="tab" data-bs-target="#tab-baralhos" class="nav-link active">Baralhos</button>
+                            <button data-bs-toggle="tab" data-bs-target="#tab-rituais" class="nav-link">Rituais</button>
+                            <button data-bs-toggle="tab" data-bs-target="#tab-mesas" class="nav-link">Mesas Radiónicas</button>
                         </nav>
                     </aside>
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                         <div class="tab-content">
-                            <div class="tab-pane active" id="baralhos">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <img class="d-block w-100" src="./imagens/Baralho-cigano.png"
-                                            alt="foto baralho">
-                                        <h5 class="text-colored fw-bold mt-2"> Baralho Cigano</h5>
-                                        <p>O baralho cigano é um espelho da alma, revelando seus pensamentos,
-                                            sentimentos e
-                                            desejos mais profundos. Com ele, você terá a oportunidade de se conhecer
-                                            melhor
-                                            e entender o que o universo te reserva. Você tem o poder de escolher o seu
-                                            caminho.</p>
-                                       <button class="btn btn-warning"
-onclick="addToCart('Consulta Baralho Cigano', 80, this)">
-Adicionar ao carrinho
-</button>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <img class="d-block w-100" src="./imagens/carta-ze.png" alt="foto-ritual2">
-                                        <h5 class="text-colored fw-bold mt-2">Baralho do Zé</h5>
-                                        <p>O Zé Pilintra, com sua malandragem e bom humor, nos ensina a aproveitar a
-                                            vida
-                                            com leveza e sabedoria. Através das cartas do seu baralho, ele nos oferece
-                                            mensagens inspiradoras para lidar com os desafios do dia a dia e alcançar a
-                                            felicidade.</p>
-                                           <button class="btn btn-warning"
-onclick="addToCart('Consulta Baralho do Zé', 80, this)">
-Adicionar ao carrinho
-</button>
-                                      
-
-
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <img class="d-block w-100" src="./imagens/baralho-maria-padilha.png"
-                                            alt="foto baralho maria padilha">
-                                        <h5 class="text-colored fw-bold mt-2"> Baralho Maria Padilha</h5>
-                                        <p>Libere-se de crenças limitantes e abra espaço para um amor autêntico e
-                                            empoderado. A Mariah Cartomante está aqui para te auxiliar nesse processo de
-                                            transformação e autoconhecimento, que mudará sua vida.</p>
-                                       <button class="btn btn-warning"
-onclick="addToCart('Consulta Maria Padilha', 80, this)">
-Adicionar ao carrinho
-</button>
-
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane" id="rituais">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <img class="d-block w-100" src="./imagens/foto-ritual1.png" alt="foto ritual1">
-                                        <h5 class="text-colored fw-bold mt-2">
-                                            Adoçamento de casais
-
-                                        </h5>
-                                        <p>O que esperar do Adoçamento de Casais na força dos Ciganos?
-
-                                            O adoçamento de casais com Mariah não é uma promessa mágica instantânea, mas
-                                            sim
-                                            um processo de transformação energética.O adoçamento de casais fortalece os
-                                            laços de amor e união entre o casal. </p>
-
-
-                                        <button class="btn btn-warning"
-onclick="addToCart('Adoçamento de casais', 97, this)">
-Adicionar ao carrinho
-</button>
-
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <img class="d-block w-100" src="./imagens/ritual2.jpg" alt="foto-ritual2">
-                                        <h5 class="text-colored fw-bold mt-2"> Prosperidade Financeira
-
-                                        </h5>
-                                        <p>A prosperidade vai além de bens materiais. Ela é um estado de abundância que
-                                            se
-                                            manifesta em todos os aspectos da vida: amor, saúde, paz interior e
-                                            realização
-                                            pessoal. Se você acredita que pode ser próspero, você já está no caminho
-                                            certo."
-                                            - Mariah Cartomante</p>
-                                        <button class="btn btn-warning"
-onclick="addToCart('Prosperidade Financeira', 120, this)">
-Adicionar ao carrinho
-</button>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <img class="d-block w-100" src="./imagens/ritual-morango.png"
-                                            alt="foto ritual3">
-                                        <h5 class="text-colored fw-bold mt-2">Padê Pombagira</h5>
-                                        <p>Ritual para Alcançar Seus Desejos com Pomba Gira: Conecte-se à Força e Magia
-                                            Neste ritual, você terá a oportunidade de se conectar com a poderosa energia
-                                            da
-                                            Pomba Gira e pedir a realização de seus desejos mais profundos.Que a Pomba
-                                            Gira
-                                            te abençoe e te guie na realização dos seus sonhos!</p>
-
-                                       <button class="btn btn-warning"
-onclick="addToCart('Padê Pombagira', 150, this)">
-Adicionar ao carrinho
-</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane" id="mesas-radionicas">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <img class="d-block w-100" src="./imagens/Mesa-radionica.png"
-                                            alt="mesa radionica chama da violeta">
-                                        <h5 class="text-colored fw-bold mt-2"> Mesa Radionica Chama da Violeta </h5>
-                                        <p>A Mesa Radiônica Chama da Violeta é uma ferramenta poderosa que pode te
-                                            auxiliar
-                                            na busca pela cura, pela transformação e pela elevação espiritual.
-                                            A Mariah Cartomante e sua equipe estão aqui para te guiar e te apoiar nessa
-                                            jornada de autoconhecimento.</p>
-
-                                       <button class="btn btn-warning"
-onclick="addToCart('Mesa Radionica Chama da Violeta', 150, this)">
-Adicionar ao carrinho
-</button>
-                                    </div>
-
-
-                                    <div class="col-md-3">
-                                        <img class="d-block w-100" src="./imagens/mesa-radionica-ze-02.png"
-                                            alt="mesa do ze">
-                                        <h5 class="text-colored fw-bold mt-2"> Mesa Radionica do Zé</h5>
-                                        <p>Esteja aberto para receber as mensagens que a Mesa Radiônica Zé Pelintra tem
-                                            para
-                                            você. Confie no poder da cura, da transformação, da sabedoria ancestral e da
-                                            vibração da prosperidade. Acredite no seu potencial infinito e na força que
-                                            reside dentro de você.</p>
-                                        <button class="btn btn-warning"
-onclick="addToCart('Mesa Radionica do Zé', 150, this)">
-Adicionar ao carrinho
-</button>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <img class="d-block w-100" src="./imagens/mesa-ganesha.png" alt="mesa Ganesha">
-
-                                        <h5 class="text-colored fw-bold mt-2"> Mesa Radionica Ganesha</h5>
-                                        <p>Na jornada da vida, onde desafios e oportunidades se entrelaçam, a Mesa
-                                            Radiônica
-                                            Ganesha surge como um farol de orientação e um portal de conexão com a
-                                            sabedoria
-                                            divina e a energia abençoada de Ganesha, o deus hindu da prosperidade e da
-                                            remoção de obstáculos.</p>
-                                       <button class="btn btn-warning"
-onclick="addToCart('Mesa Radionica Ganesha', 150, this)">
-Adicionar ao carrinho
-</button>
-                                    </div>
-
-                                </div>
-                            </div>
-
+                            <div class="tab-pane active" id="tab-baralhos"><div class="row" id="container-baralhos"></div></div>
+                            <div class="tab-pane" id="tab-rituais"><div class="row" id="container-rituais"></div></div>
+                            <div class="tab-pane" id="tab-mesas"><div class="row" id="container-mesas"></div></div>
                         </div>
-
-                    </div>
-        </section>
-
-        <section id="depoimentos" class="pt-5 pb-5">
-            <div class="container">
-                <h2 class="section-title text-center text-colored py-3 px-4">Depoimentos dos Clientes</h2>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card mb-3">
-                            <img src="./imagens/foto-Carmem.jpg" class="card-img-top img-fluid"
-                                alt="Foto da Carmem Silva">
-                            <div class="card-body">
-                                <h5 class="card-title text-colored">
-                                    Sou a Carmem Silva
-                                    <i class="bi bi-chat-left-heart"></i>
-                                </h5>A consulta online com o baralho cigano foi uma experiência muito positiva e
-                                recomendo a
-                                Mariah Cartomante
-                                para quem busca um atendimento profissional, atencioso e preciso.
-                                <p class="card-text text-colored">
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-3">
-                            <img src="./imagens/foto-d-Maria José.jpg" class="card-img-top img-fluid "
-                                alt="Foto da Maria José">
-                            <div class="card-body">
-                                <h5 class="card-title text-colored">
-                                    Sou a Maria José
-                                    <i class="bi bi-balloon-heart-fill"></i>
-                                </h5>
-
-                                <p class="card-text ">A experiência é profunda e transformadora, e a equipe oferece um
-                                    atendimento profissional, acolhedor e personalizado.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-3">
-                            <img src="./imagens/foto-Helena.jpg" class="card-img-top img-fluid "
-                                alt="Foto da Maria Oliveira">
-                            <div class="card-body">
-                                <h5 class="card-title text-colored">
-                                    Sou a Helena Battista
-                                    <i class="bi bi-emoji-kiss-fill"></i>
-                                </h5>
-                                <p class="card-text"> Recomendo com entusiasmo a Mesa Radiônica da equipe da Mariah para
-                                    todos que buscam um caminho de cura, crescimento pessoal e autoconhecimento.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-        </section>
-
-        <section id="fale-conosco" class="pt-5 pb-5">
-            <div class="container">
-                <div class="row">
-                    <h2 class="section-title text-colored fw-bold mt-2">Fale conosco</h2>
-                    <p>Siga minhas redes sociais para saber mais e entrar em contato!</p>
-                </div>
-
-                <div class="row mt-4">
-                    <div class="col-md-12">
-                        <ul class="list-unstyled d-flex justify-content-center">
-                            <li class="me-3"> <a href="https://www.facebook.com/share/cVr6w8qcscgrVrW2/?mibextid=xfxF2i"
-                                    target="_blank" class="btn btn-color-facebook text-colored fw-bold mt-2">
-                                    <i class="bi bi-facebook"></i>
-                                    Facebook
-                                </a>
-                            </li>
-                            <li class="me-3"> <a href="https://www.instagram.com/cartomantemariah_" target="_blank"
-                                    class="btn btn-color-instagram text-colored fw-bold mt-2">
-                                    <i class="bi bi-instagram"></i>
-                                    Instagram
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://api.whatsapp.com/send?phone=5521990669549&text=%2AOl%C3%A1%2C%20vim%20pelo%20site%2A"
-                                    target="_blank" class="btn btn-color-whatsapp text-colored fw-bold mt-2">
-                                    <i class="bi bi-whatsapp"></i>
-                                    Whatsapp
-                                </a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </section>
+    </main>
 
-        </a>
+    <div class="modal fade" id="modalCarrinho" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Seu Carrinho</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <ul id="lista-carrinho" class="list-group mb-3"></ul>
+                    <p class="fw-bold text-end" id="total-carrinho">Total: R$ 0,00</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success w-100" onclick="finalizarCompra()">Finalizar e Pagar</button>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
-    </div>
-    </section>
-    </div>
-    </div>
-    </div>
-    </section>
-    </div>
-
-    <!-- 🛒 MODAL DO CARRINHO -->
-<div class="modal fade" id="modalCarrinho" tabindex="-1">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <h5 class="modal-title">🛒 Seu carrinho</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <div class="modal-body">
-        <ul id="lista-carrinho" class="list-group mb-3"></ul>
-        <p class="fw-bold" id="total">Total: R$ 0</p>
-      </div>
-
-      <div class="modal-footer">
-        <button class="btn btn-success w-100" onclick="finalizarCompra()">
-          Finalizar compra
-        </button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<div id="toast-carrinho" class="toast-carrinho">
-  ✨ Item adicionado ao carrinho!
-</div>
-
-<!-- bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- seu JS -->
-<script src="./baralho-cigano.js"></script>
-    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
-
 </html>

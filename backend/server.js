@@ -3,58 +3,37 @@ import { MercadoPagoConfig, Preference } from "mercadopago";
 import cors from "cors";
 
 const app = express();
-
+app.use(cors()); // Permite que o seu site fale com este servidor
 app.use(express.json());
-app.use(cors());
 
-// 🔐 TOKEN (coloque o seu aqui)
+// Configura sua chave do Mercado Pago
 const client = new MercadoPagoConfig({
-  accessToken:"APP_USR-3487066174908994-032510-b92663bbb935700749867cf1e1942be5-3287775563"
+  accessToken: "APP_USR-3487066174908994-032510-b92663bbb935700749867cf1e1942be5-3287775563"
 });
 
 app.post("/criar-pagamento", async (req, res) => {
   try {
     const { itens } = req.body;
 
-    // 🔴 VALIDAÇÃO IMPORTANTE
-    if (!itens || !Array.isArray(itens)) {
-      return res.status(400).json({
-        erro: "Itens inválidos"
-      });
-    }
-
-    console.log("Itens recebidos:", itens);
-
-    const preferenceClient = new Preference(client);
-
-    const resposta = await preferenceClient.create({
+    const preference = new Preference(client);
+    const response = await preference.create({
       body: {
         items: itens,
         back_urls: {
-          success: "http://localhost:5500/sucesso.html",
-          failure: "http://localhost:5500/falha.html",
-          pending: "http://localhost:5500/pendente.html"
+            success: "http://localhost:5500/sucesso.html", // Mude para seu link real depois
+            failure: "http://localhost:5500/erro.html"
         },
-        
+        auto_return: "approved",
       }
     });
 
-    console.log("Resposta MP:", resposta);
+    // Envia o link de volta para o seu site
+    res.json({ url: response.init_point });
 
-    res.json({
-      url: resposta.init_point
-    });
-
-  } catch (erro) {
-    console.error("ERRO COMPLETO:", erro);
-
-    res.status(500).json({
-      erro: erro.message,
-      detalhes: erro.cause || null
-    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ erro: error.message });
   }
 });
 
-app.listen(3000, () => {
-  console.log("Servidor rodando em http://localhost:3000");
-});
+app.listen(3000, () => console.log("Servidor de Pagamento Ligado na Porta 3000"));
