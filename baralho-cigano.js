@@ -24,7 +24,8 @@ async function carregarProdutos() {
         const containers = {
             baralho: document.getElementById("container-baralhos"),
             ritual: document.getElementById("container-rituais"),
-            mesa: document.getElementById("container-mesas-radionicas")
+            mesa: document.getElementById("container-mesas-radionicas"),
+            cursos: document.getElementById("lista-cursos"), // 👈 NOVO
         };
 
         Object.values(containers).forEach(c => {
