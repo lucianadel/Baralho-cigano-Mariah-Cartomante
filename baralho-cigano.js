@@ -162,10 +162,18 @@ function criarCardHTML(p, index) {
 // ==========================
 function addToCart(nome, preco) {
     carrinho.push({ nome, preco });
+
     salvarERenderizar();
     mostrarToast();
-}
 
+    setTimeout(() => {
+    document.getElementById("nome-cliente")?.focus();
+}, 300);
+
+    // 🔥 ABRE O CARRINHO AUTOMATICAMENTE
+    const modal = new bootstrap.Modal(document.getElementById('modalCarrinho'));
+    modal.show();
+}
 function removerItem(index) {
     carrinho.splice(index, 1);
     salvarERenderizar();
@@ -197,7 +205,9 @@ function renderizarCarrinho() {
                 ${item.nome}
                 <span>R$ ${item.preco.toFixed(2)}</span>
                 <button class="btn btn-sm btn-outline-danger" onclick="removerItem(${index})">
-                    <i class="bi bi-trash"></i>
+                   <button class="btn btn-sm btn-outline-danger" onclick="removerItem(${index})">
+    Remover do carrinho
+</button>
                 </button>
             </li>
         `;
@@ -224,7 +234,17 @@ function mostrarToast() {
 // ==========================
 // PAGAMENTO
 // ==========================
-async function finalizarCompra() {
+
+window.finalizarCompra = async function () {
+
+    const nome = document.getElementById("nome-cliente")?.value.trim();
+    const whatsapp = document.getElementById("whatsapp-cliente")?.value.trim();
+    const observacoes = document.getElementById("observacoes-cliente")?.value.trim();
+
+    if (!nome || !whatsapp) {
+        alert("Preencha seu nome e WhatsApp");
+        return;
+    }
 
     if (carrinho.length === 0) {
         alert("Carrinho vazio!");
@@ -241,9 +261,14 @@ async function finalizarCompra() {
             body: JSON.stringify({
                 itens: carrinho.map(i => ({
                     title: i.nome,
-                    quantity: 1,
+                    quantity: i.quantidade || 1,
                     unit_price: i.preco
-                }))
+                })),
+                cliente: {
+                    nome,
+                    whatsapp,
+                    observacoes
+                }
             })
         });
 

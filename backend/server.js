@@ -13,18 +13,39 @@ const client = new MercadoPagoConfig({
 
 app.post("/criar-pagamento", async (req, res) => {
   try {
-    const { itens } = req.body;
+    const { itens, cliente } = req.body;
+
+    console.log("Cliente:", cliente);
+    console.log("Itens:", itens);
+
+    if (!cliente || !cliente.nome || !cliente.whatsapp) {
+  return res.status(400).json({
+    erro: "Dados do cliente incompletos"
+  });
+}
 
     const preference = new Preference(client);
     const response = await preference.create({
-      body: {
-        items: itens,
-        back_urls: {
-            success: "http://localhost:5500/sucesso.html", // Mude para seu link real depois
-            failure: "http://localhost:5500/erro.html"
-        },
-        auto_return: "approved",
-      }
+     body: {
+  items: itens,
+
+  payer: {
+    name: cliente.nome
+  },
+
+  back_url: {
+    success: "http://localhost:5500/sucesso.html",
+    failure: "http://localhost:5500/erro.html"
+  },
+
+  auto_return: "approved",
+
+  metadata: {
+    nome: cliente.nome,
+    whatsapp: cliente.whatsapp,
+    observacoes: cliente.observacoes || ""
+  }
+}
     });
 
     // Envia o link de volta para o seu site
