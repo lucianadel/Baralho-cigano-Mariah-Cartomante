@@ -1,0 +1,49 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f9f5ff;
+  text-align: center;
+}
+
+/* BOX */
+.box {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  max-width: 500px;
+  margin: 80px auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+  animation: aparecer 0.6s ease;
+}
+
+/* ANIMAÇÃO */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1 {
+  color: #7B2CBF;
+}
+
+/* BOTÃO */
+.btn-voltar {
+  display: inline-block;
+  margin-top: 20px;
+  background: #7B2CBF;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.btn-voltar:hover {
+  background: #5a189a;
+}

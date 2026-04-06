@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pagamento aprovado</title>
+
+  <link rel="stylesheet" href="sucesso.css">
+</head>
+
+<body>
+
+  <div class="box">
+    <h1> Pedido realizado com sucesso!</h1>
+
+    <p>
+      Obrigado pela sua compra 💜<br><br>
+      A Mariah entrará em contato com você pelo WhatsApp em breve.
+    </p>
+
+    <!-- 🔥 BOTÃO WHATSAPP -->
+    <button class="btn-voltar" onclick="enviarWhatsApp()">
+      📲 Falar com a Mariah no WhatsApp
+    </button>
+
+    <br><br>
+
+    <a href="/" class="btn-voltar">Voltar para o site</a>
+  </div>
+
+  <!-- ==========================
+       SCRIPT WHATSAPP
+  ========================== -->
+  <script>
+    function enviarWhatsApp() {
+
+      const pedido = JSON.parse(localStorage.getItem("pedido_mariah"));
+
+      if (!pedido) {
+        alert("Pedido não encontrado.");
+        return;
+      }
+
+      let mensagem = `Olá! Fiz um pedido no site:\n\n`;
+
+      pedido.itens.forEach(item => {
+        mensagem += `• ${item.title} - R$ ${item.unit_price}\n`;
+      });
+
+      mensagem += `\nTotal: R$ ${pedido.total}`;
+      mensagem += `\n\nNome: ${pedido.nome}`;
+      mensagem += `\nWhatsApp: ${pedido.whatsapp}`;
+
+      // 🔥 COLOCA O NÚMERO DA MARIAH AQUI
+      const numero = "990669549";
+
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>
+

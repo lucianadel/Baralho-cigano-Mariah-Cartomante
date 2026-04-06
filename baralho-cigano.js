@@ -1,122 +1,227 @@
+// ==========================
+// CONFIG
+// ==========================
+const API_URL = "https://script.google.com/macros/s/AKfycbxZDJ6HvJFRZmnMLW4msPpk4xdOoCChXMu-_xmdqdrmWS7BopSTCz-MT6ZsezV6N8KdDw/exec";
 
-const API_URL = "https://script.google.com/macros/s/AKfycbxXp0Pc68WK2bUpELbV715hvvxVC0TROr6Xr4_v6sUCnvEWd3PCebqYeyDLf7Q-55lImw/exec";
 let carrinho = JSON.parse(localStorage.getItem("carrinho_mariah")) || [];
 
+// ==========================
+// INICIAR
+// ==========================
 window.onload = () => {
-    atualizarProdutos();
+    carregarProdutos();
     renderizarCarrinho();
 };
 
-// --- BUSCA PRODUTOS ---
-async function atualizarProdutos() {
+// ==========================
+// PRODUTOS
+// ==========================
+async function carregarProdutos() {
     try {
-        const response = await fetch(API_URL);
-        const produtos = await response.json();
+        const res = await fetch(API_URL);
+        const produtos = await res.json();
 
         const containers = {
-            "baralho": document.getElementById("container-baralhos"),
-            "ritual": document.getElementById("container-rituais"),
-            "mesa": document.getElementById("container-mesas")
+            baralho: document.getElementById("container-baralhos"),
+            baralhos: document.getElementById("container-baralhos"),
+            ritual: document.getElementById("container-rituais"),
+            rituais: document.getElementById("container-rituais"),
+            mesa: document.getElementById("container-mesas-radionicas"),
+            mesas: document.getElementById("container-mesas-radionicas"),
+            cursos: document.getElementById("lista-cursos"),
         };
 
-        // Limpa containers
-        Object.values(containers).forEach(c => if(c) c.innerHTML = "");
+        Object.values(containers).forEach(c => c && (c.innerHTML = ""));
 
         produtos.forEach((p, index) => {
             if (String(p.ativo).toLowerCase() !== "sim") return;
-            
-            const cat = String(p.categoria).toLowerCase().trim();
-            const target = containers[cat];
 
-            if (target) {
-                target.innerHTML += criarCardHTML(p, index);
-            }
+            const categoria = String(p.categoria || "").toLowerCase().trim();
+            const target = containers[categoria];
+
+            if (!target) return;
+
+            target.innerHTML += criarCardHTML(p, index);
         });
-    } catch (e) { console.error("Erro ao carregar:", e); }
+
+    } catch (erro) {
+        console.error("Erro produtos:", erro);
+    }
 }
 
-// --- GERA O CARD COM CARROSSEL ---
-function criarCardHTML(p, i) {
-    const idCarousel = `carrossel-item-${i}`;
-    const fotos = p.imagem ? p.imagem.split(",") : ["./imagens/logo.png"];
+// ==========================
+// CARD
+// ==========================
+function criarCardHTML(p, index) {
+    const idCarousel = `carousel-${index}`;
+    const fotos = p.imagem ? p.imagem.split(",") : ["https://picsum.photos/300/200"];
+
+    const imagens = fotos.map((img, i) => `
+        <div class="carousel-item ${i === 0 ? "active" : ""}">
+            <img src="${img.trim()}" class="d-block w-100" style="height:220px; object-fit:cover;">
+        </div>
+    `).join("");
+
+    let botoes = "";
+    const categoria = String(p.categoria || "").toLowerCase().trim();
+
+    if (categoria.includes("baralho") && p.opcoes) {
+        const lista = p.opcoes.replace(/\n/g, ",").split(",");
+
+        lista.forEach(item => {
+            let nome = "";
+            let preco = 0;
+
+            if (item.includes(":")) {
+                const partes = item.split(":");
+                nome = partes[0].trim();
+                preco = Number(partes[1]);
+            }
+
+            if (!preco || isNaN(preco)) return;
+
+            botoes += `
+                <button class="btn-comprar mb-2"
+                    onclick="addToCart('${p.nome} - ${nome}', ${preco})">
+                    ${nome} - R$ ${preco.toFixed(2)}
+                </button>
+            `;
+        });
+    } else {
+        let preco = Number(p.opcoes);
+
+        if (!preco || isNaN(preco)) return "";
+
+        botoes = `
+            <p>R$ ${preco.toFixed(2)}</p>
+            <button class="btn-comprar"
+                onclick="addToCart('${p.nome}', ${preco})">
+                🛒 Adicionar
+            </button>
+        `;
+    }
 
     return `
-        <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card h-100 shadow-sm border-0">
-                <div id="${idCarousel}" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        ${fotos.map((img, idx) => `
-                            <div class="carousel-item ${idx === 0 ? 'active' : ''}">
-                                <img src="${img.trim()}" class="d-block w-100" style="height:200px; object-fit:cover;">
-                            </div>
-                        `).join('')}
-                    </div>
-                    ${fotos.length > 1 ? `
-                        <button class="carousel-control-prev" data-bs-target="#${idCarousel}" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
-                        <button class="carousel-control-next" data-bs-target="#${idCarousel}" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
-                    ` : ''}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div id="${idCarousel}" class="carousel slide">
+                    <div class="carousel-inner">${imagens}</div>
                 </div>
+
                 <div class="card-body text-center">
-                    <h5 class="fw-bold text-colored">${p.nome}</h5>
-                    <p class="small text-muted">${p.descricao || ""}</p>
-                    <button class="btn btn-warning w-100 fw-bold" onclick="addToCart('${p.nome}', '${p.preco}')">
-                        <i class="bi bi-plus-circle me-1"></i> R$ ${p.preco}
-                    </button>
+                    <h5>${p.nome}</h5>
+                    ${botoes}
                 </div>
             </div>
         </div>
     `;
 }
 
-// --- CARRINHO ---
+// ==========================
+// CARRINHO
+// ==========================
 function addToCart(nome, preco) {
-    const valor = Number(String(preco).replace(/[R$\s.]/g, "").replace(",", "."));
-    carrinho.push({ nome, preco: valor });
-    salvarERenderizar();
-}
+    preco = Number(preco);
 
-function removerItem(index) {
-    carrinho.splice(index, 1);
-    salvarERenderizar();
-}
+    if (!preco || isNaN(preco)) {
+        alert("Erro no preço");
+        return;
+    }
 
-function salvarERenderizar() {
-    localStorage.setItem("carrinho_mariah", JSON.stringify(carrinho));
+    carrinho.push({ nome, preco });
+    salvar();
     renderizarCarrinho();
+
+    new bootstrap.Modal(document.getElementById('modalCarrinho')).show();
+}
+
+function salvar() {
+    localStorage.setItem("carrinho_mariah", JSON.stringify(carrinho));
 }
 
 function renderizarCarrinho() {
     const lista = document.getElementById("lista-carrinho");
-    const totalEl = document.getElementById("total-carrinho");
-    const contador = document.getElementById("contador-carrinho");
+    const totalEl = document.getElementById("total");
+
+    if (!lista) return;
 
     lista.innerHTML = "";
     let total = 0;
 
     carrinho.forEach((item, i) => {
-        const li = document.createElement("li");
-        li.className = "list-group-item d-flex justify-content-between align-items-center";
-        li.innerHTML = `<span>${item.nome}</span> <b>R$ ${item.preco.toFixed(2)}</b>
-                        <button class="btn btn-sm btn-outline-danger" onclick="removerItem(${i})"><i class="bi bi-trash"></i></button>`;
-        lista.appendChild(li);
         total += item.preco;
+
+        lista.innerHTML += `
+            <li class="list-group-item d-flex justify-content-between">
+                ${item.nome} - R$ ${item.preco}
+                <button onclick="removerItem(${i})">❌</button>
+            </li>
+        `;
     });
 
     totalEl.innerText = `Total: R$ ${total.toFixed(2)}`;
-    contador.innerText = `(${carrinho.length})`;
 }
 
-// --- PAGAMENTO ---
-async function finalizarCompra() {
-    if (carrinho.length === 0) return alert("Carrinho vazio!");
+function removerItem(i) {
+    carrinho.splice(i, 1);
+    salvar();
+    renderizarCarrinho();
+}
+
+// ==========================
+// PAGAMENTO + PEDIDO
+// ==========================
+window.finalizarCompra = async function () {
+
+    const nome = document.getElementById("cliente-nome").value.trim();
+    const whatsapp = document.getElementById("cliente-telefone").value.trim();
+
+    if (!nome || !whatsapp) {
+        alert("Preencha nome e WhatsApp");
+        return;
+    }
+
+    if (carrinho.length === 0) {
+        alert("Carrinho vazio");
+        return;
+    }
+
+    const itens = carrinho.map(i => ({
+        title: i.nome,
+        quantity: 1,
+        unit_price: i.preco
+    }));
+
+    const total = carrinho.reduce((s, i) => s + i.preco, 0);
+
+    // 💾 SALVA PEDIDO
+    localStorage.setItem("pedido_mariah", JSON.stringify({
+        nome,
+        whatsapp,
+        itens,
+        total
+    }));
 
     try {
-        const res = await fetch("http://localhost:3000/criar-pagamento", {
+        const res = await fetch("https://backend-mariah.onrender.com/criar-pagamento", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ itens: carrinho.map(i => ({ title: i.nome, quantity: 1, unit_price: i.preco })) })
+            body: JSON.stringify({
+                itens,
+                cliente: { nome, whatsapp }
+            })
         });
+
         const data = await res.json();
-        if (data.url) window.location.href = data.url;
-    } catch (e) { alert("Erro ao conectar com o servidor de pagamento."); }
-}
+
+        if (data.init_point) {
+            window.location.href = data.init_point;
+        } else {
+            alert("Erro ao gerar pagamento");
+        }
+
+    } catch (erro) {
+        console.error(erro);
+        alert("Erro servidor");
+    }
+};

@@ -1,110 +1,233 @@
+/* ==========================
+   1. RESET
+========================== */
+
 body {
-    font-family: roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f5ff;
+    margin: 0;
+    padding: 0;
 }
 
-.navbar,
-.btn-color-red {
-    background-color: #8B0000;
+html {
+    scroll-padding-top: 80px;
 }
 
-.btn-color-red {
-    color: #fff;
+/* ==========================
+   2. NAVBAR
+========================== */
+
+.navbar {
+    background-color: #7B2CBF;
 }
 
-.btn-color-red:hover {
-    background-color: #FFDAB9;
-    color: #000;
-}
-
-
-#cabecalho .nav .nav-link.active {
-    background-color: #fff;
-    color: #8B0000;
-}
-
-#cabecalho .nav .nav-link,
 .navbar-brand,
-.navbar-brand:hover,
-.nav-servico .nav-link.active:hover {
+.navbar-brand:hover {
     color: #fff;
 }
-
-/* .navbar-brand {
-    font-family: pacifico, cursive;
-} */
 
 .navbar-toggler {
     background-color: #fff;
 }
 
-.section-title {
-    font-family: pacifico, cursive;
+#cabecalho .nav-link {
+    color: #fff;
+    transition: 0.3s;
 }
 
-#sobre,
-#depoimentos{
-    background-color: #FFDAB9;
+#cabecalho .nav-link:hover {
+    opacity: 0.8;
+}
+
+/* REMOVE AZUL DO BOOTSTRAP */
+.nav-pills .nav-link.active {
+    background: transparent !important;
+    color: #fff !important;
+}
+
+/* ==========================
+   3. MENU TOPO (CORRIGIDO)
+========================== */
+
+#menu-topo {
+    position: relative;
+    display: flex;
+    gap: 10px;
+}
+
+/* TEXTO SEMPRE NA FRENTE */
+#menu-topo .nav-link {
+    position: relative;
+    z-index: 10;
+}
+
+/* INDICADOR (VERSÃO PROFISSIONAL) */
+.menu-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    height: 4px; /* 👈 linha fina (NÃO cobre texto) */
+    width: 0;
+
+    background: linear-gradient(135deg, #C77DFF, #7B2CBF);
+
+    border-radius: 10px;
+
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+/* ==========================
+   4. TÍTULOS
+========================== */
+
+.section-title {
+    font-family: 'Pacifico', cursive;
 }
 
 .text-colored {
-    color: #8B0000;
+    color: #9D4EDD;
 }
 
-.nav-servico .nav-link.nav-link.active {
-    background-color: #8B0000;
+/* ==========================
+   5. SOBRE
+========================== */
+
+#sobre {
+    background-color: #f3e8ff;
+}
+
+#sobre ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+/* FOTO MARIAH */
+.foto-mariah {
+    width: 200px;
+    height: 200px;
+
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 20%;
+
+    display: block;
+    margin: auto;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* TEXTO */
+#sobre p {
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ==========================
+   6. SERVIÇOS
+========================== */
+
+#servicos {
+    background-color: #fff;
+}
+
+/* MENU SERVIÇOS */
+.nav-servico {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-servico .nav-link {
+    background: transparent;
+    color: #7B2CBF;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    padding: 10px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.nav-servico .nav-link.active {
+    background: linear-gradient(135deg, #9D4EDD, #7B2CBF);
+    color: #fff;
+}
+
+.nav-servico .nav-link:hover {
+    background-color: #E0AAFF;
+}
+
+/* ==========================
+   7. CARDS
+========================== */
+
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    height: 180px;
+    object-fit: cover;
+}
+
+.preco {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* ==========================
+   8. BOTÃO COMPRA
+========================== */
+
+.btn-comprar {
+    width: 100%;
+    padding: 12px;
+
+    background: linear-gradient(135deg, #1E90FF, #0d6efd);
     color: #fff;
 
+    border: none;
+    border-radius: 10px;
+
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.3s;
 }
 
-.nav-servico .nav-link.nav-link {
-    color: #8B0000;
-
+.btn-comprar:hover {
+    background: linear-gradient(135deg, #0d6efd, #0a58ca);
+    transform: translateY(-2px);
 }
 
-#servicos .section-title {
-    position: relative;
-    right:30px;
-    /* Ajuste o valor de 'right' */
-    transform: translateY(-20px);
-    
-    
+/* ==========================
+   9. RESPONSIVO
+========================== */
 
-}
+@media (max-width: 768px) {
 
-.toast-carrinho {
-  position: fixed;
-  top: 90px; /* 👈 AQUI mudou */
-  right: 20px;
-  background: #1a1333;
-  color: #fff;
-  padding: 12px 18px;
-  border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  z-index: 2000;
-  font-weight: 600;
-}
+    .foto-mariah {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 20px;
+    }
 
-.toast-carrinho.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .nav-servico {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 
-/* BOTÃO ADICIONAR AO CARRINHO */
-.btn-primary {
-  transition: all 0.3s ease;
-}
-
-.btn-primary {
-  transition: all 0.25s ease;
-}
-
-.btn-primary:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.9), 
-              0 10px 25px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(45deg, #8b0000, #c40000);
+    .nav-servico .nav-link {
+        min-width: 100px;
+        font-size: 14px;
+    }
 }
