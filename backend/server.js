@@ -1,60 +1,40 @@
 import express from "express";
-import { MercadoPagoConfig, Preference } from "mercadopago";
 import cors from "cors";
+import { MercadoPagoConfig, Preference } from "mercadopago";
 
 const app = express();
-app.use(cors()); // Permite que o seu site fale com este servidor
+
+app.use(cors());
 app.use(express.json());
 
-// Configura sua chave do Mercado Pago
 const client = new MercadoPagoConfig({
-  accessToken: "APP_USR-3487066174908994-032510-b92663bbb935700749867cf1e1942be5-3287775563"
+  accessToken: "SEU_TOKEN_AQUI"
 });
 
 app.post("/criar-pagamento", async (req, res) => {
   try {
-    const { itens, cliente } = req.body;
-
-    console.log("Cliente:", cliente);
-    console.log("Itens:", itens);
-
-    if (!cliente || !cliente.nome || !cliente.whatsapp) {
-  return res.status(400).json({
-    erro: "Dados do cliente incompletos"
-  });
-}
-
     const preference = new Preference(client);
+
     const response = await preference.create({
-     body: {
-  items: itens,
-
-  payer: {
-    name: cliente.nome
-  },
-
-  back_url: {
-    success: "http://localhost:5500/sucesso.html",
-    failure: "http://localhost:5500/erro.html"
-  },
-
-  auto_return: "approved",
-
-  metadata: {
-    nome: cliente.nome,
-    whatsapp: cliente.whatsapp,
-    observacoes: cliente.observacoes || ""
-  }
-}
+      body: {
+        items: [
+          {
+            title: "Produto Teste",
+            quantity: 1,
+            unit_price: 50
+          }
+        ]
+      }
     });
 
-    // Envia o link de volta para o seu site
-    res.json({ url: response.init_point });
+    res.json({ init_point: response.init_point });
 
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ erro: error.message });
+  } catch (erro) {
+    console.error(erro);
+    res.status(500).json({ erro: "Erro no pagamento" });
   }
 });
 
-app.listen(3000, () => console.log("Servidor de Pagamento Ligado na Porta 3000"));
+app.listen(3000, () => {
+  console.log("Servidor rodando");
+});

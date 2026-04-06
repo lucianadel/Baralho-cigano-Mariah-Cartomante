@@ -1,7 +1,7 @@
 // ==========================
 // CONFIG
 // ==========================
-const API_URL = "https://script.google.com/macros/s/AKfycby5qyss73txl8I3hkiiEJkS_rSxboG51Nfv0GvD_RnftCkITt5v-whufy_uPmt6yy6WKw/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbxZDJ6HvJFRZmnMLW4msPpk4xdOoCChXMu-_xmdqdrmWS7BopSTCz-MT6ZsezV6N8KdDw/exec";
 
 let carrinho = JSON.parse(localStorage.getItem("carrinho_mariah")) || [];
 
@@ -14,7 +14,7 @@ window.onload = () => {
 };
 
 // ==========================
-// BUSCAR PRODUTOS
+// PRODUTOS
 // ==========================
 async function carregarProdutos() {
     try {
@@ -23,21 +23,20 @@ async function carregarProdutos() {
 
         const containers = {
             baralho: document.getElementById("container-baralhos"),
+            baralhos: document.getElementById("container-baralhos"),
             ritual: document.getElementById("container-rituais"),
+            rituais: document.getElementById("container-rituais"),
             mesa: document.getElementById("container-mesas-radionicas"),
-            cursos: document.getElementById("lista-cursos"), // 👈 NOVO
+            mesas: document.getElementById("container-mesas-radionicas"),
+            cursos: document.getElementById("lista-cursos"),
         };
 
-        Object.values(containers).forEach(c => {
-            if (c) c.innerHTML = "";
-        });
+        Object.values(containers).forEach(c => c && (c.innerHTML = ""));
 
         produtos.forEach((p, index) => {
+            if (String(p.ativo).toLowerCase() !== "sim") return;
 
-            if (!p.ativo || String(p.ativo).toLowerCase() !== "sim") return;
-            if (!p.categoria) return;
-
-            const categoria = String(p.categoria).toLowerCase().trim();
+            const categoria = String(p.categoria || "").toLowerCase().trim();
             const target = containers[categoria];
 
             if (!target) return;
@@ -46,112 +45,73 @@ async function carregarProdutos() {
         });
 
     } catch (erro) {
-        console.error("Erro ao carregar produtos:", erro);
+        console.error("Erro produtos:", erro);
     }
 }
 
 // ==========================
-// CRIAR CARD
+// CARD
 // ==========================
 function criarCardHTML(p, index) {
-
     const idCarousel = `carousel-${index}`;
+    const fotos = p.imagem ? p.imagem.split(",") : ["https://picsum.photos/300/200"];
 
-    const fotos = p.imagem
-        ? p.imagem.split(",")
-        : ["https://picsum.photos/300/200"];
-
-    const imagensHTML = fotos.map((img, i) => `
+    const imagens = fotos.map((img, i) => `
         <div class="carousel-item ${i === 0 ? "active" : ""}">
             <img src="${img.trim()}" class="d-block w-100" style="height:220px; object-fit:cover;">
         </div>
     `).join("");
 
-    const controles = fotos.length > 1 ? `
-        <button class="carousel-control-prev" data-bs-target="#${idCarousel}" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" data-bs-target="#${idCarousel}" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
-    ` : "";
-
     let botoes = "";
+    const categoria = String(p.categoria || "").toLowerCase().trim();
 
-    // ==========================
-    // BARALHOS (MÚLTIPLAS OPÇÕES)
-    // ==========================
-    if (p.categoria === "baralho" && p.opcoes) {
+    if (categoria.includes("baralho") && p.opcoes) {
+        const lista = p.opcoes.replace(/\n/g, ",").split(",");
 
-        const lista = p.opcoes.split(",");
+        lista.forEach(item => {
+            let nome = "";
+            let preco = 0;
 
-        lista.forEach(op => {
-
-            const [nome, valor] = op.split(":");
-            const preco = Number(valor);
+            if (item.includes(":")) {
+                const partes = item.split(":");
+                nome = partes[0].trim();
+                preco = Number(partes[1]);
+            }
 
             if (!preco || isNaN(preco)) return;
 
             botoes += `
-                <div class="mb-2">
-
-                    <p class="preco">${nome} - R$ ${preco.toFixed(2)}</p>
-
-                    <button class="btn-comprar"
-                        onclick="addToCart('${p.nome} - ${nome}', ${preco})">
-                        🛒 Adicionar ao carrinho
-                    </button>
-
-                </div>
+                <button class="btn-comprar mb-2"
+                    onclick="addToCart('${p.nome} - ${nome}', ${preco})">
+                    ${nome} - R$ ${preco.toFixed(2)}
+                </button>
             `;
         });
-    }
+    } else {
+        let preco = Number(p.opcoes);
 
-    // ==========================
-    // RITUAIS E MESAS (UM BOTÃO)
-    // ==========================
-    else {
-
-        let preco = 0;
-
-        if (p.opcoes) {
-            const primeira = p.opcoes.split(",")[0];
-            preco = Number(primeira.split(":")[1]);
-        }
+        if (!preco || isNaN(preco)) return "";
 
         botoes = `
-            <p class="preco">R$ ${preco.toFixed(2)}</p>
-
+            <p>R$ ${preco.toFixed(2)}</p>
             <button class="btn-comprar"
                 onclick="addToCart('${p.nome}', ${preco})">
-                🛒 Adicionar ao carrinho
+                🛒 Adicionar
             </button>
         `;
     }
 
     return `
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0">
-
-                <div id="${idCarousel}" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        ${imagensHTML}
-                    </div>
-                    ${controles}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div id="${idCarousel}" class="carousel slide">
+                    <div class="carousel-inner">${imagens}</div>
                 </div>
 
-                <div class="card-body text-center d-flex flex-column">
-
-                    <h5 class="fw-bold text-colored">${p.nome}</h5>
-
-                    <p class="small text-muted flex-grow-1">
-                        ${p.descricao || ""}
-                    </p>
-
+                <div class="card-body text-center">
+                    <h5>${p.nome}</h5>
                     ${botoes}
-
                 </div>
-
             </div>
         </div>
     `;
@@ -161,127 +121,107 @@ function criarCardHTML(p, index) {
 // CARRINHO
 // ==========================
 function addToCart(nome, preco) {
+    preco = Number(preco);
+
+    if (!preco || isNaN(preco)) {
+        alert("Erro no preço");
+        return;
+    }
+
     carrinho.push({ nome, preco });
-
-    salvarERenderizar();
-    mostrarToast();
-
-    setTimeout(() => {
-    document.getElementById("nome-cliente")?.focus();
-}, 300);
-
-    // 🔥 ABRE O CARRINHO AUTOMATICAMENTE
-    const modal = new bootstrap.Modal(document.getElementById('modalCarrinho'));
-    modal.show();
-}
-function removerItem(index) {
-    carrinho.splice(index, 1);
-    salvarERenderizar();
-}
-
-function salvarERenderizar() {
-    localStorage.setItem("carrinho_mariah", JSON.stringify(carrinho));
+    salvar();
     renderizarCarrinho();
+
+    new bootstrap.Modal(document.getElementById('modalCarrinho')).show();
+}
+
+function salvar() {
+    localStorage.setItem("carrinho_mariah", JSON.stringify(carrinho));
 }
 
 function renderizarCarrinho() {
-
     const lista = document.getElementById("lista-carrinho");
     const totalEl = document.getElementById("total");
-    const contador = document.getElementById("contador-carrinho");
 
-    if (!lista || !totalEl || !contador) return;
+    if (!lista) return;
 
     lista.innerHTML = "";
-
     let total = 0;
 
-    carrinho.forEach((item, index) => {
-
+    carrinho.forEach((item, i) => {
         total += item.preco;
 
         lista.innerHTML += `
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                ${item.nome}
-                <span>R$ ${item.preco.toFixed(2)}</span>
-                <button class="btn btn-sm btn-outline-danger" onclick="removerItem(${index})">
-                   <button class="btn btn-sm btn-outline-danger" onclick="removerItem(${index})">
-    Remover do carrinho
-</button>
-                </button>
+            <li class="list-group-item d-flex justify-content-between">
+                ${item.nome} - R$ ${item.preco}
+                <button onclick="removerItem(${i})">❌</button>
             </li>
         `;
     });
 
     totalEl.innerText = `Total: R$ ${total.toFixed(2)}`;
-    contador.innerText = `(${carrinho.length})`;
+}
+
+function removerItem(i) {
+    carrinho.splice(i, 1);
+    salvar();
+    renderizarCarrinho();
 }
 
 // ==========================
-// TOAST
+// PAGAMENTO + PEDIDO
 // ==========================
-function mostrarToast() {
-    const toast = document.getElementById("toast-carrinho");
-    if (!toast) return;
-
-    toast.classList.add("mostrar");
-
-    setTimeout(() => {
-        toast.classList.remove("mostrar");
-    }, 2000);
-}
-
-// ==========================
-// PAGAMENTO
-// ==========================
-
 window.finalizarCompra = async function () {
 
-    const nome = document.getElementById("nome-cliente")?.value.trim();
-    const whatsapp = document.getElementById("whatsapp-cliente")?.value.trim();
-    const observacoes = document.getElementById("observacoes-cliente")?.value.trim();
+    const nome = document.getElementById("cliente-nome").value.trim();
+    const whatsapp = document.getElementById("cliente-telefone").value.trim();
 
     if (!nome || !whatsapp) {
-        alert("Preencha seu nome e WhatsApp");
+        alert("Preencha nome e WhatsApp");
         return;
     }
 
     if (carrinho.length === 0) {
-        alert("Carrinho vazio!");
+        alert("Carrinho vazio");
         return;
     }
 
-    try {
+    const itens = carrinho.map(i => ({
+        title: i.nome,
+        quantity: 1,
+        unit_price: i.preco
+    }));
 
-        const res = await fetch("http://localhost:3000/criar-pagamento", {
+    const total = carrinho.reduce((s, i) => s + i.preco, 0);
+
+    // 💾 SALVA PEDIDO
+    localStorage.setItem("pedido_mariah", JSON.stringify({
+        nome,
+        whatsapp,
+        itens,
+        total
+    }));
+
+    try {
+        const res = await fetch("https://backend-mariah.onrender.com/criar-pagamento", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                itens: carrinho.map(i => ({
-                    title: i.nome,
-                    quantity: i.quantidade || 1,
-                    unit_price: i.preco
-                })),
-                cliente: {
-                    nome,
-                    whatsapp,
-                    observacoes
-                }
+                itens,
+                cliente: { nome, whatsapp }
             })
         });
 
         const data = await res.json();
 
-        if (data.url) {
-            window.location.href = data.url;
+        if (data.init_point) {
+            window.location.href = data.init_point;
         } else {
             alert("Erro ao gerar pagamento");
         }
 
     } catch (erro) {
-        console.error("Erro pagamento:", erro);
-        alert("Erro ao conectar com servidor");
+        console.error(erro);
+        alert("Erro servidor");
     }
-}
+};
