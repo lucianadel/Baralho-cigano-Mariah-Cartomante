@@ -239,6 +239,11 @@ html {
   transform: translateY(-2px);
 }
 
+.btn-comprar--adicionado,
+.btn-comprar--adicionado:hover {
+  background: linear-gradient(135deg, #0a58ca, #084298);
+}
+
 /* ==========================
    CARRINHO
 ========================== */
@@ -256,6 +261,62 @@ html {
   padding: 5px 10px;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.carrinho-vazio {
+  text-align: center;
+  padding: 20px 0 8px;
+}
+
+.carrinho-vazio p {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #7B2CBF;
+}
+
+/* ==========================
+   TELA POS-PAGAMENTO
+========================== */
+.tela-pos-pagamento {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(34, 10, 54, 0.78);
+  backdrop-filter: blur(6px);
+}
+
+.tela-pos-pagamento.d-none {
+  display: none;
+}
+
+.tela-pos-pagamento__box {
+  width: min(100%, 520px);
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px 24px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.tela-pos-pagamento__box h3 {
+  color: #7B2CBF;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.tela-pos-pagamento__box p {
+  color: #4a3a57;
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+body.tela-pos-pagamento-aberta {
+  overflow: hidden;
 }
 
 /* ==========================
@@ -280,6 +341,31 @@ html {
     font-size: 14px;
   }
 
+  .tela-pos-pagamento__box {
+    padding: 24px 18px;
+  }
+
   
+}
+
+.produto-linha {
+  justify-content: center;
+  text-align: center;
+}
+
+.produto-info {
+  align-items: center;
+  text-align: center;
+}
+
+.qtd {
+  justify-content: center;
+}
+
+.btn-comprar,
+.btn-add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 

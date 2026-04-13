@@ -1,7 +1,13 @@
 // ==========================
 // CONFIG
 // ==========================
-const API_URL = "https://script.google.com/macros/s/AKfycbxZDJ6HvJFRZmnMLW4msPpk4xdOoCChXMu-_xmdqdrmWS7BopSTCz-MT6ZsezV6N8KdDw/exec";
+const appConfig = window.APP_CONFIG || {};
+const API_URL =
+  appConfig.PRODUCTS_API_URL ||
+  "https://script.google.com/macros/s/AKfycbxZDJ6HvJFRZmnMLW4msPpk4xdOoCChXMu-_xmdqdrmWS7BopSTCz-MT6ZsezV6N8KdDw/exec";
+const PAGAMENTO_API_URL =
+  appConfig.PAYMENTS_API_URL ||
+  "http://localhost:3000/criar-pagamento";
 
 let carrinho = JSON.parse(localStorage.getItem("carrinho_mariah")) || [];
 let quantidades = {};
@@ -121,7 +127,7 @@ function criarLinhaProduto(nomeBase, nome, preco, id) {
         </div>
 
         <button class="btn-comprar"
-          onclick="addToCart('${nomeBase} ${nome}', ${preco}, '${id}')">
+          onclick="addToCart('${nomeBase} ${nome}', ${preco}, '${id}', this)">
           Adicionar
         </button>
 
@@ -146,7 +152,7 @@ function diminuir(id) {
 // ==========================
 // ADD AO CARRINHO
 // ==========================
-function addToCart(nome, preco, id) {
+function addToCart(nome, preco, id, botao) {
 
   const quantidade = quantidades[id] || 1;
 
@@ -159,17 +165,17 @@ function addToCart(nome, preco, id) {
 
   mostrarToast("Adicionado ao carrinho 🛒");
 
-  try {
-    const modalEl = document.getElementById('modalCarrinho');
+  if (botao) {
+    botao.innerText = "Adicionado";
+    botao.classList.add("btn-comprar--adicionado");
 
-    if (modalEl && typeof bootstrap !== "undefined") {
-      const modal = new bootstrap.Modal(modalEl);
-      setTimeout(() => modal.show(), 500);
-    }
-
-  } catch (e) {
-    console.error(e);
+    clearTimeout(botao._textoTimeout);
+    botao._textoTimeout = setTimeout(() => {
+      botao.innerText = "Adicionar";
+      botao.classList.remove("btn-comprar--adicionado");
+    }, 2000);
   }
+
 }
 
 // ==========================
@@ -187,7 +193,7 @@ function mostrarToast(msg) {
       position: "fixed",
       bottom: "20px",
       right: "20px",
-      background: "linear-gradient(135deg, #7B2CBF, #9D4EDD)",
+      background: "linear-gradient(135deg, #0a58ca, #084298)",
       color: "white",
       padding: "12px 18px",
       borderRadius: "10px",
@@ -214,8 +220,22 @@ function renderizarCarrinho() {
 
   const lista = document.getElementById("lista-carrinho");
   const totalEl = document.getElementById("total");
+  const carrinhoVazioEl = document.getElementById("carrinho-vazio");
+  const checkoutContainer = document.getElementById("checkout-container");
 
   lista.innerHTML = "";
+  if (!lista || !totalEl || !carrinhoVazioEl || !checkoutContainer) return;
+
+  if (carrinho.length === 0) {
+    totalEl.innerText = "";
+    carrinhoVazioEl.classList.remove("d-none");
+    checkoutContainer.classList.add("d-none");
+    return;
+  }
+
+  carrinhoVazioEl.classList.add("d-none");
+  checkoutContainer.classList.remove("d-none");
+
   let total = 0;
 
   carrinho.forEach((item, i) => {
@@ -244,15 +264,58 @@ function removerItem(i) {
   atualizarContadorCarrinho();
 }
 
+function abrirTelaPosPagamento(urlPagamento) {
+  const tela = document.getElementById("tela-pos-pagamento");
+  const linkManual = document.getElementById("link-pagamento-manual");
+
+  if (!tela || !linkManual) return;
+
+  linkManual.href = urlPagamento;
+  tela.classList.remove("d-none");
+  document.body.classList.add("tela-pos-pagamento-aberta");
+}
+
+window.fecharTelaPosPagamento = function () {
+  const tela = document.getElementById("tela-pos-pagamento");
+  const modalCarrinhoEl = document.getElementById("modalCarrinho");
+
+  if (!tela) return;
+
+  tela.classList.add("d-none");
+  document.body.classList.remove("tela-pos-pagamento-aberta");
+
+  carrinho = [];
+  localStorage.removeItem("carrinho_mariah");
+  renderizarCarrinho();
+  atualizarContadorCarrinho();
+
+  if (modalCarrinhoEl && typeof bootstrap !== "undefined") {
+    const modalCarrinho =
+      bootstrap.Modal.getInstance(modalCarrinhoEl) ||
+      new bootstrap.Modal(modalCarrinhoEl);
+
+    modalCarrinho.hide();
+  }
+};
+
 // ==========================
 // PAGAMENTO
 // ==========================
 window.finalizarCompra = async function () {
+  if (carrinho.length === 0) {
+    renderizarCarrinho();
+    return;
+  }
+
+  const pagamentoTab = window.open("", "_blank");
 
   const nome = document.getElementById("cliente-nome").value.trim();
   const whatsapp = document.getElementById("cliente-telefone").value.trim();
 
   if (!nome || !whatsapp) {
+    if (pagamentoTab) {
+      pagamentoTab.close();
+    }
     alert("Preencha os dados");
     return;
   }
@@ -265,7 +328,7 @@ window.finalizarCompra = async function () {
 
   try {
 
-    const res = await fetch("https://backend-mariah.onrender.com/criar-pagamento", {
+    const res = await fetch(PAGAMENTO_API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -277,12 +340,24 @@ window.finalizarCompra = async function () {
     const data = await res.json();
 
     if (data.init_point) {
-      window.location.href = data.init_point;
+      if (pagamentoTab) {
+        pagamentoTab.location.href = data.init_point;
+      } else {
+        window.open(data.init_point, "_blank", "noopener,noreferrer");
+      }
+
+      abrirTelaPosPagamento(data.init_point);
     } else {
+      if (pagamentoTab) {
+        pagamentoTab.close();
+      }
       alert("Erro ao gerar pagamento");
     }
 
   } catch {
+    if (pagamentoTab) {
+      pagamentoTab.close();
+    }
     alert("Erro no servidor");
   }
 };

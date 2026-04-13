@@ -5,6 +5,7 @@ yarn-error.log
 
 # Ambiente
 .env
+config.js
 
 # Sistema
 .DS_Store

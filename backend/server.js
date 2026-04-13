@@ -1,14 +1,23 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
 import { MercadoPagoConfig, Preference } from "mercadopago";
+
+dotenv.config();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+const accessToken = process.env.MERCADO_PAGO_ACCESS_TOKEN;
+
+if (!accessToken) {
+  throw new Error("MERCADO_PAGO_ACCESS_TOKEN nao foi definido no arquivo .env");
+}
+
 const client = new MercadoPagoConfig({
-  accessToken: "APP_USR-3300972170932574-033009-07c9baccad31572819984ff02b0bbd05-3303234066"
+  accessToken
 });
 
 app.post("/criar-pagamento", async (req, res) => {
