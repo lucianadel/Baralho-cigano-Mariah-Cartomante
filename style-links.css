@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: radial-gradient(circle at top, #1a0f2e, #0d061a);
+  color: white;
+}
+
+.container {
+  max-width: 500px;
+  margin: auto;
+  padding: 30px 20px;
+}
+
+.titulo {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.subtitulo {
+  text-align: center;
+  opacity: 0.7;
+  margin-bottom: 30px;
+}
+
+/* CARDS */
+.card-link {
+  display: block;
+  text-decoration: none;
+  color: white;
+  margin-bottom: 18px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #2b1055, #3c096c);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+.card-link:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+/* CONTEÚDO */
+.card-content {
+  padding: 25px;
+}
+
+.card-content h2 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.card-content span {
+  display: inline-block;
+  margin-top: 10px;
+  background: linear-gradient(45deg, #C77DFF, #9D4EDD);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+/* DESTAQUE WHATSAPP */
+.destaque {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+}
