@@ -10,7 +10,7 @@ body {
   color: #f7f1e8;
   background:
     linear-gradient(rgba(20, 10, 34, 0.72), rgba(20, 10, 34, 0.82)),
-    url("./imagens/luminas_art-galaxy-3607885.jpg") center/cover fixed no-repeat,
+    url("../imagens/luminas_art-galaxy-3607885.jpg") center/cover fixed no-repeat,
     linear-gradient(180deg, #160f22 0%, #211332 52%, #17111f 100%);
 }
 
