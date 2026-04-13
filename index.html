@@ -22,6 +22,10 @@
 
 <body>
 
+  <body>
+
+
+
 <!-- HEADER -->
 <header class="navbar navbar-expand-lg sticky-top p-3" id="cabecalho">
   <div class="container">
@@ -162,7 +166,7 @@
         <i class="bi bi-whatsapp"></i>
       </a>
 
-      <a href="https://instagram.com/cartomanttemariah_" target="_blank" class="contato-icon">
+      <a href="https://instagram.com/cartomantemariah_" target="_blank" class="contato-icon">
         <i class="bi bi-instagram"></i>
       </a>
     </div>
@@ -186,33 +190,39 @@
 
         <ul id="lista-carrinho"></ul>
         <p id="total"></p>
+        <div id="carrinho-vazio" class="carrinho-vazio d-none">
+          <p>Carrinho vazio</p>
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            Fechar
+          </button>
+        </div>
 
-        <hr>
+        <div id="checkout-container">
+          <hr>
 
-      <h5>Finalize seu pedido</h5>
+          <h5>Finalize seu pedido</h5>
 
-<div class="form-checkout">
+          <div class="form-checkout">
+            <div class="mb-2">
+              <label>Nome completo *</label>
+              <input type="text" id="cliente-nome" class="form-control" placeholder="Digite seu nome">
+            </div>
 
-  <div class="mb-2">
-    <label>Nome completo *</label>
-    <input type="text" id="cliente-nome" class="form-control" placeholder="Digite seu nome">
-  </div>
+            <div class="mb-2">
+              <label>WhatsApp *</label>
+              <input type="text" id="cliente-telefone" class="form-control" placeholder="(22) 99999-9999">
+            </div>
 
-  <div class="mb-2">
-    <label>WhatsApp *</label>
-    <input type="text" id="cliente-telefone" class="form-control" placeholder="(22) 99999-9999">
-  </div>
+            <div class="mb-2">
+              <label>Email (opcional)</label>
+              <input type="email" id="cliente-email" class="form-control" placeholder="seuemail@email.com">
+            </div>
+          </div>
 
-  <div class="mb-2">
-    <label>Email (opcional)</label>
-    <input type="email" id="cliente-email" class="form-control" placeholder="seuemail@email.com">
-  </div>
-
-</div>
-
-<button onclick="finalizarCompra()" class="btn btn-success w-100">
-  Ir para pagamento
-</button>
+          <button id="btn-ir-pagamento" onclick="finalizarCompra()" class="btn btn-success w-100">
+            Ir para pagamento
+          </button>
+        </div>
 
       </div>
 
@@ -220,8 +230,38 @@
   </div>
 </div>
 
+<div id="tela-pos-pagamento" class="tela-pos-pagamento d-none">
+  <div class="tela-pos-pagamento__box">
+    <h3>Pagamento aberto em outra aba</h3>
+    <p>
+      Abrimos uma nova página para você finalizar o pagamento no Mercado Pago.
+    </p>
+    <p>
+      Após a confirmação do pagamento, entraremos em contato com você em até 24h
+      para o envio das informações do produto adquirido.
+    </p>
+    <a
+      id="link-pagamento-manual"
+      class="btn btn-primary w-100 mb-3"
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Abrir pagamento novamente
+    </a>
+    <button
+      type="button"
+      class="btn btn-outline-secondary w-100"
+      onclick="fecharTelaPosPagamento()"
+    >
+      Fechar mensagem
+    </button>
+  </div>
+</div>
+
 <!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="config.js"></script>
 <script src="baralho-cigano.js"></script>
 
 </body>

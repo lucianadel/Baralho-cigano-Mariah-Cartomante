@@ -43,7 +43,7 @@
       let mensagem = `Olá! Fiz um pedido no site:\n\n`;
 
       pedido.itens.forEach(item => {
-        mensagem += `• ${item.title} - R$ ${item.unit_price}\n`;
+        mensagem += `• ${item.title} - ${item.quantity}x - R$ ${item.unit_price}\n`;
       });
 
       mensagem += `\nTotal: R$ ${pedido.total}`;

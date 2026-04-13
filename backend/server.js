@@ -1,29 +1,35 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
 import { MercadoPagoConfig, Preference } from "mercadopago";
+
+dotenv.config();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+const accessToken = process.env.MERCADO_PAGO_ACCESS_TOKEN;
+
+if (!accessToken) {
+  throw new Error("MERCADO_PAGO_ACCESS_TOKEN nao foi definido no arquivo .env");
+}
+
 const client = new MercadoPagoConfig({
-  accessToken: "SEU_TOKEN_AQUI"
+  accessToken
 });
 
 app.post("/criar-pagamento", async (req, res) => {
   try {
+
+    const { itens } = req.body;
+
     const preference = new Preference(client);
 
     const response = await preference.create({
       body: {
-        items: [
-          {
-            title: "Produto Teste",
-            quantity: 1,
-            unit_price: 50
-          }
-        ]
+        items: itens
       }
     });
 

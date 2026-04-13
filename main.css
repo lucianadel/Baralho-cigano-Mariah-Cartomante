@@ -1,233 +1,371 @@
 /* ==========================
-   1. RESET
+   RESET
 ========================== */
-
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f9f5ff;
-    margin: 0;
-    padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f9f5ff;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-    scroll-padding-top: 80px;
+  scroll-padding-top: 80px;
 }
 
 /* ==========================
-   2. NAVBAR
+   NAVBAR
 ========================== */
-
 .navbar {
-    background-color: #7B2CBF;
+  background-color: #7B2CBF;
 }
 
 .navbar-brand,
 .navbar-brand:hover {
-    color: #fff;
+  color: #fff;
 }
 
 .navbar-toggler {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 #cabecalho .nav-link {
-    color: #fff;
-    transition: 0.3s;
+  color: #fff;
+  transition: 0.3s;
 }
 
 #cabecalho .nav-link:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
-/* REMOVE AZUL DO BOOTSTRAP */
 .nav-pills .nav-link.active {
-    background: transparent !important;
-    color: #fff !important;
+  background: transparent !important;
+  color: #fff !important;
 }
 
 /* ==========================
-   3. MENU TOPO (CORRIGIDO)
+   MENU INDICADOR
 ========================== */
-
 #menu-topo {
-    position: relative;
-    display: flex;
-    gap: 10px;
+  position: relative;
+  display: flex;
+  gap: 10px;
 }
 
-/* TEXTO SEMPRE NA FRENTE */
 #menu-topo .nav-link {
-    position: relative;
-    z-index: 10;
+  position: relative;
+  z-index: 10;
 }
 
-/* INDICADOR (VERSÃO PROFISSIONAL) */
 .menu-indicator {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-
-    height: 4px; /* 👈 linha fina (NÃO cobre texto) */
-    width: 0;
-
-    background: linear-gradient(135deg, #C77DFF, #7B2CBF);
-
-    border-radius: 10px;
-
-    transition: all 0.3s ease;
-    z-index: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 0;
+  background: linear-gradient(135deg, #C77DFF, #7B2CBF);
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
 /* ==========================
-   4. TÍTULOS
+   TÍTULOS
 ========================== */
-
 .section-title {
-    font-family: 'Pacifico', cursive;
+  font-family: 'Pacifico', cursive;
 }
 
 .text-colored {
-    color: #9D4EDD;
+  color: #9D4EDD;
 }
 
 /* ==========================
-   5. SOBRE
+   SOBRE
 ========================== */
-
 #sobre {
-    background-color: #f3e8ff;
+  background-color: #f3e8ff;
 }
 
-#sobre ul {
-    list-style: none;
-    padding-left: 20px;
-}
-
-/* FOTO MARIAH */
 .foto-mariah {
-    width: 200px;
-    height: 200px;
-
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: 50% 20%;
-
-    display: block;
-    margin: auto;
-
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 20%;
+  margin: auto;
+  display: block;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
 
-/* TEXTO */
 #sobre p {
-    color: #333;
-    line-height: 1.6;
+  color: #333;
+  line-height: 1.6;
 }
 
 /* ==========================
-   6. SERVIÇOS
+   SERVIÇOS
 ========================== */
-
-#servicos {
-    background-color: #fff;
-}
-
-/* MENU SERVIÇOS */
 .nav-servico {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .nav-servico .nav-link {
-    background: transparent;
-    color: #7B2CBF;
-    font-weight: bold;
-    border-radius: 10px;
-    margin-bottom: 8px;
-    padding: 10px;
-    text-align: center;
-    transition: 0.3s;
+  background: transparent;
+  color: #7B2CBF;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  padding: 10px;
+  text-align: center;
+  transition: 0.3s;
 }
 
 .nav-servico .nav-link.active {
-    background: linear-gradient(135deg, #9D4EDD, #7B2CBF);
-    color: #fff;
+  background: linear-gradient(135deg, #9D4EDD, #7B2CBF);
+  color: #fff;
 }
 
 .nav-servico .nav-link:hover {
-    background-color: #E0AAFF;
+  background-color: #E0AAFF;
 }
 
 /* ==========================
-   7. CARDS
+   CARDS
 ========================== */
-
 .card {
-    border-radius: 12px;
-    overflow: hidden;
-    transition: 0.3s;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-}
-
-.card img {
-    height: 180px;
-    object-fit: cover;
-}
-
-.preco {
-    font-weight: bold;
-    margin: 10px 0;
+  transform: translateY(-5px);
 }
 
 /* ==========================
-   8. BOTÃO COMPRA
+   PRODUTO (AGRUPADO)
 ========================== */
-
-.btn-comprar {
-    width: 100%;
-    padding: 12px;
-
-    background: linear-gradient(135deg, #1E90FF, #0d6efd);
-    color: #fff;
-
-    border: none;
-    border-radius: 10px;
-
-    font-weight: bold;
-    cursor: pointer;
-
-    transition: 0.3s;
+.produto-item {
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #eee;
+  transition: 0.2s;
 }
 
-.btn-comprar:hover {
-    background: linear-gradient(135deg, #0d6efd, #0a58ca);
-    transform: translateY(-2px);
+.produto-item:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* BLOCO INTERNO */
+.produto-linha {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap; /* 🔥 ESSENCIAL */
+}
+
+/* INFO */
+.produto-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;          /* 🔥 faz ocupar espaço disponível */
+  min-width: 120px; /* 🔥 evita quebrar layout */
+
+
+}
+
+.produto-info strong {
+  font-size: 15px;
+}
+
+.produto-info span {
+  color: #7B2CBF;
+  font-weight: bold;
 }
 
 /* ==========================
-   9. RESPONSIVO
+   QUANTIDADE
 ========================== */
+.qtd {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
+.qtd button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #7B2CBF, #9D4EDD);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.qtd button:hover {
+  transform: scale(1.05);
+}
+
+.qtd span {
+  min-width: 24px;
+  text-align: center;
+  font-weight: bold;
+  color: #7B2CBF;
+}
+
+/* ==========================
+   BOTÕES (UNIFICADO)
+========================== */
+.btn-comprar,
+.btn-add {
+  background: linear-gradient(135deg, #1E90FF, #0d6efd);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-comprar:hover,
+.btn-add:hover {
+  background: linear-gradient(135deg, #0d6efd, #0a58ca);
+  transform: translateY(-2px);
+}
+
+.btn-comprar--adicionado,
+.btn-comprar--adicionado:hover {
+  background: linear-gradient(135deg, #0a58ca, #084298);
+}
+
+/* ==========================
+   CARRINHO
+========================== */
+#lista-carrinho li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#lista-carrinho button {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.carrinho-vazio {
+  text-align: center;
+  padding: 20px 0 8px;
+}
+
+.carrinho-vazio p {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #7B2CBF;
+}
+
+/* ==========================
+   TELA POS-PAGAMENTO
+========================== */
+.tela-pos-pagamento {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(34, 10, 54, 0.78);
+  backdrop-filter: blur(6px);
+}
+
+.tela-pos-pagamento.d-none {
+  display: none;
+}
+
+.tela-pos-pagamento__box {
+  width: min(100%, 520px);
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px 24px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.tela-pos-pagamento__box h3 {
+  color: #7B2CBF;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.tela-pos-pagamento__box p {
+  color: #4a3a57;
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+body.tela-pos-pagamento-aberta {
+  overflow: hidden;
+}
+
+/* ==========================
+   RESPONSIVO
+========================== */
 @media (max-width: 768px) {
 
-    .foto-mariah {
-        width: 150px;
-        height: 150px;
-        margin-bottom: 20px;
-    }
+  .foto-mariah {
+    width: 150px;
+    height: 150px;
+  }
 
-    .nav-servico {
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
+  .nav-servico {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
 
-    .nav-servico .nav-link {
-        min-width: 100px;
-        font-size: 14px;
-    }
+  .nav-servico .nav-link {
+    min-width: 100px;
+    font-size: 14px;
+  }
+
+  .tela-pos-pagamento__box {
+    padding: 24px 18px;
+  }
+
+  
 }
+
+.produto-linha {
+  justify-content: center;
+  text-align: center;
+}
+
+.produto-info {
+  align-items: center;
+  text-align: center;
+}
+
+.qtd {
+  justify-content: center;
+}
+
+.btn-comprar,
+.btn-add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+

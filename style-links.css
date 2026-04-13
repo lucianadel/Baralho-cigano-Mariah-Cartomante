@@ -1,0 +1,194 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  color: #f7f1e8;
+  background:
+    linear-gradient(rgba(20, 10, 34, 0.72), rgba(20, 10, 34, 0.82)),
+    url("./imagens/luminas_art-galaxy-3607885.jpg") center/cover fixed no-repeat,
+    linear-gradient(180deg, #160f22 0%, #211332 52%, #17111f 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at top left, rgba(157, 78, 221, 0.16), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(123, 44, 191, 0.14), transparent 28%);
+  z-index: 0;
+}
+
+.links-page {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 760px);
+  margin: 0 auto;
+  padding: 32px 20px 56px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.hero__avatar {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(197, 154, 88, 0.8);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
+}
+
+.hero__eyebrow {
+  margin: 18px 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 11px;
+  color: #d1ac6f;
+}
+
+.hero h1 {
+  margin: 0;
+  font-family: "Pacifico", cursive;
+  font-size: clamp(34px, 6vw, 52px);
+  line-height: 1.08;
+  font-weight: 400;
+}
+
+.hero__text {
+  width: min(100%, 420px);
+  margin: 12px auto 0;
+  color: rgba(247, 241, 232, 0.8);
+  line-height: 1.6;
+}
+
+.links-list {
+  display: grid;
+  gap: 22px;
+}
+
+.link-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(170px, 0.9fr);
+  gap: 10px;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  padding: 28px 28px 28px 34px;
+  border-radius: 28px;
+  border: 1px solid rgba(209, 172, 111, 0.75);
+  background:
+    linear-gradient(180deg, rgba(189, 135, 255, 0.1), rgba(255, 255, 255, 0.02)),
+    rgba(30, 16, 46, 0.94);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.link-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px rgba(18, 5, 32, 0.45);
+  border-color: #d9b67f;
+}
+
+.link-card__content {
+  position: relative;
+  z-index: 1;
+}
+
+.link-card__label {
+  margin: 0 0 10px;
+  color: #d1ac6f;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.link-card h2 {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(48px, 7vw, 70px);
+  line-height: 0.92;
+  font-weight: 600;
+}
+
+.link-card__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 18px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #c9a060 0%, #b58847 100%);
+  color: #fff8ed;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.link-card__art {
+  position: relative;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.link-card__art img {
+  width: min(100%, 220px);
+  max-height: 180px;
+  object-fit: contain;
+  border-radius: 22px;
+  filter: drop-shadow(0 18px 25px rgba(0, 0, 0, 0.28));
+}
+
+@media (max-width: 640px) {
+  .links-page {
+    padding: 24px 16px 44px;
+  }
+
+  .link-card {
+    grid-template-columns: 1fr;
+    padding: 26px 22px;
+    gap: 16px;
+  }
+
+  .link-card h2 {
+    font-size: 60px;
+  }
+
+  .link-card__art {
+    min-height: 160px;
+  }
+
+  .whatsapp-icon {
+    width: 132px;
+    height: 132px;
+  }
+
+  .whatsapp-icon svg {
+    width: 74px;
+    height: 74px;
+  }
+
+  .mini-card {
+    width: 92px;
+    height: 128px;
+  }
+
+  .link-card--whatsapp .link-card__art::before {
+    width: 140px;
+    height: 140px;
+  }
+}
